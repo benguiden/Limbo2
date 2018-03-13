@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
 
     #region Public Variables
     [Header("Movement")]
+    public float horizontalSpeed = 4f;
     public float accelerationTime = 0.5f;
     public float decelerationTime = 0.4f;
     public AnimationCurve horizontalCurve;
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour {
 
     //Input
     private float horizontalInput = 0f;
+    private float absHorizontalInput = 0f;
 
     //References
     private Rigidbody2D rb2d;
@@ -41,27 +43,47 @@ public class PlayerController : MonoBehaviour {
     private void Update() {
         //Get Input
         horizontalInput = Input.GetAxisRaw(horizontalInputString);
+        absHorizontalInput = Mathf.Abs(horizontalInput);
 
         //Update Velocity based on the horizontalCurve
         UpdateVelocity();
 
         //Alter Rigidbody
-
+        UpdateRigidbody();
     }
     #endregion
 
     #region Movement Methods
     private void UpdateVelocity() {
-        horizontalTime += Time.deltaTime * horizontalInput;
-        horizontalTime = Mathf.Clamp(horizontalTime, -horizontalTime, horizontalTime);
+        if ((horizontalInput == 0f) && (Mathf.Abs(horizontalInput - horizontalTime) <= 0.05f)) {
+            horizontalTime = 0f;
+        } else if (horizontalInput > horizontalTime) {
+            if (horizontalTime >= 0f)
+                horizontalTime += Time.deltaTime * 1f / accelerationTime;
+            else
+                horizontalTime += Time.deltaTime * 1f / decelerationTime;
+        } else if (horizontalInput < horizontalTime) {
+            if (horizontalTime <= 0f)
+                horizontalTime -= Time.deltaTime * 1f / accelerationTime;
+            else
+                horizontalTime -= Time.deltaTime * 1f / decelerationTime;
+        }
 
-        velocity.x = horizontalCurve.Evaluate(horizontalTime / accelerationTime);
+        //Clamp Time
+        horizontalTime = Mathf.Clamp(horizontalTime, -1f, 1f);
+
+        //Evaluate from curve
+        if (horizontalTime >= 0f)
+            velocity.x = horizontalSpeed * horizontalCurve.Evaluate(horizontalTime);
+        else
+            velocity.x = horizontalSpeed * -horizontalCurve.Evaluate(-horizontalTime);
     }
 
     private void UpdateRigidbody() {
         rb2d.velocity = velocity;
+        Debug.Log(horizontalTime);
         velocity = Vector2.zero;
     }
     #endregion
-    //test
+    
 }
