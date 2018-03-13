@@ -12,6 +12,11 @@ public class PlayerController : MonoBehaviour {
     public float decelerationTime = 0.4f;
     public AnimationCurve horizontalCurve;
 
+    [Header("Jumping")]
+    public float jumpHeight = 4f;
+    public float riseTime = 0.75f; 
+    public float fallTime = 0.35f;
+
     [Header("Input")]
     public string horizontalInputString = "Horizontal"; //Left Joystick
     public string jumpInputString = "Jump"; //A on Xbox controller
@@ -25,6 +30,10 @@ public class PlayerController : MonoBehaviour {
     #region Private Variables
     //Movement
     private float horizontalTime = 0f;
+
+    //Gravity
+    private float jumpVelocity;
+    private float gravityUp, gravityDown;
 
     //Input
     private float horizontalInput = 0f;
@@ -55,6 +64,8 @@ public class PlayerController : MonoBehaviour {
 
     #region Movement Methods
     private void UpdateVelocity() {
+
+        //Change Time base on input
         if ((horizontalInput == 0f) && (Mathf.Abs(horizontalInput - horizontalTime) <= 0.05f)) {
             horizontalTime = 0f;
         } else if (horizontalInput > horizontalTime) {
@@ -81,8 +92,13 @@ public class PlayerController : MonoBehaviour {
 
     private void UpdateRigidbody() {
         rb2d.velocity = velocity;
-        Debug.Log(horizontalTime);
         velocity = Vector2.zero;
+    }
+
+    private void CalculateJump() {
+        jumpVelocity = 2f * jumpHeight / (riseTime + fallTime);
+        gravityDown = -2f * jumpHeight / (fallTime * fallTime);
+        gravityUp = -2f * jumpHeight / (riseTime * riseTime);
     }
     #endregion
     
