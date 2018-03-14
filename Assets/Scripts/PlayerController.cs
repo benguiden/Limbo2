@@ -23,8 +23,13 @@ public class PlayerController : MonoBehaviour {
     #endregion
 
     #region Hidden Variables
+    //Movement
     [HideInInspector]
     public Vector2 velocity;
+
+    //Jumping
+    //[HideInInspector]
+    public bool canJump = false;
     #endregion
 
     #region Private Variables
@@ -37,25 +42,38 @@ public class PlayerController : MonoBehaviour {
 
     //Input
     private float horizontalInput = 0f;
-    private float absHorizontalInput = 0f;
+    private bool jumpInput = false;
+    private bool jumpInputLast = false;
 
     //References
     private Rigidbody2D rb2d;
     #endregion
 
     #region Mono Methods
+    private void OnValidate() {
+        CalculateJump ();
+    }
+
     private void Awake() {
         //References
         rb2d = GetComponent<Rigidbody2D>();
+
+        //Calculations
+        CalculateJump ();
     }
 
     private void Update() {
         //Get Input
         horizontalInput = Input.GetAxisRaw(horizontalInputString);
-        absHorizontalInput = Mathf.Abs(horizontalInput);
+        UpdateJumpInput ();
 
         //Update Velocity based on the horizontalCurve
         UpdateVelocity();
+
+        //Update Jump
+        velocity.y = rb2d.velocity.y;
+        UpdateJumpMovement ();
+        UpdateGravity ();
 
         //Alter Rigidbody
         UpdateRigidbody();
@@ -64,8 +82,10 @@ public class PlayerController : MonoBehaviour {
 
     #region Movement Methods
     private void UpdateVelocity() {
-
         //Change Time base on input
+        if (rb2d.velocity.x == 0f)
+            horizontalTime = 0f;
+
         if ((horizontalInput == 0f) && (Mathf.Abs(horizontalInput - horizontalTime) <= 0.05f)) {
             horizontalTime = 0f;
         } else if (horizontalInput > horizontalTime) {
@@ -95,10 +115,36 @@ public class PlayerController : MonoBehaviour {
         velocity = Vector2.zero;
     }
 
+    private void UpdateJumpInput() {
+        if (Input.GetAxisRaw(jumpInputString) > 0f) {
+            if (jumpInputLast)
+                jumpInput = false;
+            else
+                jumpInput = true;
+            jumpInputLast = true;
+        } else {
+            jumpInput = false;
+            jumpInputLast = false;
+        }
+    }
+
+    private void UpdateJumpMovement() {
+        if ((jumpInput) && (canJump)) {
+            velocity.y = jumpVelocity;
+        }
+    }
+
+    private void UpdateGravity() {
+        if (velocity.y <= 0f)
+            velocity.y += gravityDown * Time.deltaTime;
+        else
+            velocity.y += gravityUp * Time.deltaTime;
+    }
+
     private void CalculateJump() {
-        jumpVelocity = 2f * jumpHeight / (riseTime + fallTime);
         gravityDown = -2f * jumpHeight / (fallTime * fallTime);
         gravityUp = -2f * jumpHeight / (riseTime * riseTime);
+        jumpVelocity = -gravityUp * riseTime;
     }
     #endregion
     

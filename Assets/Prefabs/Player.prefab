@@ -79,19 +79,19 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1883711648903534}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!61 &61965637850185546
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -128,9 +128,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53a69a044cfb6514ca62ed1f0a257e8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalSpeed: 2
-  accelerationTime: 0.35
-  decelerationTime: 0.25
+  horizontalSpeed: 3
+  accelerationTime: 0.4
+  decelerationTime: 0.3
   horizontalCurve:
     serializedVersion: 2
     m_Curve:
@@ -155,9 +155,13 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  jumpHeight: 2
+  riseTime: 0.5
+  fallTime: 0.3
   horizontalInputString: Horizontal
   jumpInputString: Jump
   velocity: {x: 0, y: 0}
+  canJump: 1
 --- !u!212 &212696792730612444
 SpriteRenderer:
   m_ObjectHideFlags: 1
