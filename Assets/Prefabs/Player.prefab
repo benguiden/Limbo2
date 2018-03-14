@@ -128,8 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53a69a044cfb6514ca62ed1f0a257e8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalSpeed: 3
-  accelerationTime: 0.4
+  horizontalSpeed: 7
+  accelerationTime: 0.5
   decelerationTime: 0.3
   horizontalCurve:
     serializedVersion: 2
@@ -155,13 +155,13 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  jumpHeight: 2
-  riseTime: 0.5
-  fallTime: 0.3
+  jumpHeight: 6
+  riseTime: 0.6
+  fallTime: 0.45
   horizontalInputString: Horizontal
   jumpInputString: Jump
   velocity: {x: 0, y: 0}
-  isGrounded: 0
+  isGrounded: 1
 --- !u!212 &212696792730612444
 SpriteRenderer:
   m_ObjectHideFlags: 1
