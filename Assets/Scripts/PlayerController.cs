@@ -28,8 +28,8 @@ public class PlayerController : MonoBehaviour {
     public Vector2 velocity;
 
     //Jumping
-    //[HideInInspector]
-    public bool canJump = false;
+    [HideInInspector]
+    public bool isGrounded = false;
     #endregion
 
     #region Private Variables
@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour {
     //Gravity
     private float jumpVelocity;
     private float gravityUp, gravityDown;
+    private const float groundDetectionHeight = 0.15f;
 
     //Input
     private float horizontalInput = 0f;
@@ -47,6 +48,11 @@ public class PlayerController : MonoBehaviour {
 
     //References
     private Rigidbody2D rb2d;
+    private BoxCollider2D boxCollider;
+
+    //Debugging
+    private float debugGroundBox = 0f;
+    private List<Vector2> debugGroundedPoint = new List<Vector2> ();
     #endregion
 
     #region Mono Methods
@@ -54,9 +60,23 @@ public class PlayerController : MonoBehaviour {
         CalculateJump ();
     }
 
+    private void OnDrawGizmosSelected() {
+        if (Application.isPlaying) {
+            Vector2 boxPosition = (Vector2)transform.position;
+            boxPosition.y -= debugGroundBox / 2f;
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireCube ((Vector3)boxPosition, new Vector3 (1f, debugGroundBox, 1f));
+            Gizmos.color = Color.red;
+            foreach (Vector2 point in debugGroundedPoint) {
+                Gizmos.DrawWireSphere ((Vector3)point, 0.05f);
+            }
+        }
+    }
+
     private void Awake() {
         //References
         rb2d = GetComponent<Rigidbody2D>();
+        boxCollider = GetComponent<BoxCollider2D> ();
 
         //Calculations
         CalculateJump ();
@@ -77,6 +97,13 @@ public class PlayerController : MonoBehaviour {
 
         //Alter Rigidbody
         UpdateRigidbody();
+    }
+
+    private void FixedUpdate() {
+        debugGroundedPoint = new List<Vector2> ();
+        isGrounded = false;
+        if (rb2d.velocity.y <= 0f)
+            CheckGrounded ();
     }
     #endregion
 
@@ -129,7 +156,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void UpdateJumpMovement() {
-        if ((jumpInput) && (canJump)) {
+        if ((jumpInput) && (isGrounded)) {
             velocity.y = jumpVelocity;
         }
     }
@@ -147,5 +174,26 @@ public class PlayerController : MonoBehaviour {
         jumpVelocity = -gravityUp * riseTime;
     }
     #endregion
-    
+
+    #region Fixed Physics Methods
+    private void CheckGrounded() {
+        float boxHeight = Mathf.Clamp (groundDetectionHeight - (rb2d.velocity.y * Time.fixedDeltaTime), groundDetectionHeight, 5f);
+        debugGroundBox = boxHeight;
+
+        Vector2 boxOrigin = (Vector2)transform.position + boxCollider.offset;
+        boxOrigin.y += groundDetectionHeight + (rb2d.velocity.y * Time.fixedDeltaTime);
+
+        RaycastHit2D[] boxHits = Physics2D.BoxCastAll (boxOrigin, new Vector2 (boxCollider.size.x, boxHeight), 0f, Vector2.down, boxHeight + (boxCollider.size.y / 2f));
+
+        foreach (RaycastHit2D boxHit in boxHits) {
+            if (boxHit) {
+                debugGroundedPoint.Add (boxHit.point);
+                if (boxHit.collider.gameObject.isStatic) {
+                    isGrounded = true;
+                }
+            }
+        }
+    }
+    #endregion
+
 }
