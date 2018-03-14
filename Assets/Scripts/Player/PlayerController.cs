@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour {
     [Header("Input")]
     public string horizontalInputString = "Horizontal"; //Left Joystick
     public string jumpInputString = "Jump"; //A on Xbox controller
+
+    [Header ("Collisions")]
+    public LayerMask groundedLayer = 8;
     #endregion
 
     #region Hidden Variables
@@ -183,14 +186,12 @@ public class PlayerController : MonoBehaviour {
         Vector2 boxOrigin = (Vector2)transform.position + boxCollider.offset;
         boxOrigin.y += groundDetectionHeight + (rb2d.velocity.y * Time.fixedDeltaTime);
 
-        RaycastHit2D[] boxHits = Physics2D.BoxCastAll (boxOrigin, new Vector2 (boxCollider.size.x, boxHeight), 0f, Vector2.down, boxHeight + (boxCollider.size.y / 2f));
+        RaycastHit2D[] boxHits = Physics2D.BoxCastAll (boxOrigin, new Vector2 (boxCollider.size.x, boxHeight), 0f, Vector2.down, boxHeight + (boxCollider.size.y / 2f), groundedLayer);
 
         foreach (RaycastHit2D boxHit in boxHits) {
             if (boxHit) {
                 debugGroundedPoint.Add (boxHit.point);
-                if (boxHit.collider.gameObject.isStatic) {
-                    isGrounded = true;
-                }
+                isGrounded = true;
             }
         }
     }
