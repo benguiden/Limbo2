@@ -14,7 +14,7 @@ public class PuzzleButton : MonoBehaviour {
     public GameObject interactObject;
     public PuzzleButton twinButton;
     
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         if(other.tag == "Player")
         {
@@ -25,6 +25,10 @@ public class PuzzleButton : MonoBehaviour {
                     if (twinButton.isActivated)
                     {
                         EnactBehaviour(behaviourType);
+                        isActivated = true;
+                    }
+                    else
+                    {
                         isActivated = true;
                     }
                 }
@@ -42,14 +46,28 @@ public class PuzzleButton : MonoBehaviour {
         }
         if(other.tag == "Creature")
         {
+            
             if (triggerType == TriggerType.Creature)
             {
-                Debug.Log("Creature Entered");
+                if (twinButton != null)  // If button has an active twin, the twin needs to be active
+                {
+                    if (twinButton.isActivated)
+                    {
+                        EnactBehaviour(behaviourType);
+                        isActivated = true;
+                    }
+                    else
+                    {
+                        isActivated = true;
+                    }
+                }
+                else  // Otherwise, go ahead
+                {
+                    EnactBehaviour(behaviourType);
+                    isActivated = true;
+                }
             }
-            else
-            {
-                Debug.Log("WRONG!");
-            }
+           
         }
         OnStep();
         
