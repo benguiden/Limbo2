@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 624863927}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -258,7 +258,7 @@ Transform:
   m_LocalScale: {x: 24.25, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &624863927
 BoxCollider2D:
@@ -400,7 +400,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 702899038}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.63, y: -1.4, z: 0.114207484}
+  m_LocalPosition: {x: -2.63, y: -1.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -417,6 +417,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58f690d2dbcc9634f9e4275cc39cb668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
+  moveSpeed: 0
+  maxSpeed: 0
+  fleeTarget: {fileID: 1369247936}
+  lurePrefab: {fileID: 1079130937065050, guid: ad4354fa4e460a344b4ddfcb38c4aa65, type: 2}
+  lureSpawn: {fileID: 0}
+  lure: {fileID: 0}
 --- !u!1 &705951970
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,7 +658,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4202581508310830, guid: 3a8343c8e0c868e4c93e25b039d79a9d, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4202581508310830, guid: 3a8343c8e0c868e4c93e25b039d79a9d, type: 2}
       propertyPath: m_LocalScale.y
@@ -660,6 +667,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a8343c8e0c868e4c93e25b039d79a9d, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1369247936 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1883711648903534, guid: 3a8343c8e0c868e4c93e25b039d79a9d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1369247935}
 --- !u!1 &1756561684
 GameObject:
   m_ObjectHideFlags: 0

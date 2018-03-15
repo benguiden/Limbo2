@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Button
   - Creature
+  - distraction
+  - Ground
   layers:
   - Default
   - TransparentFX
