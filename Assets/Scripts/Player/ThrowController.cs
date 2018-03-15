@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ThrowController : MonoBehaviour {
 
@@ -26,12 +24,23 @@ public class ThrowController : MonoBehaviour {
     public Object lurePrefab;
     #endregion
 
+    #region Hidden Variables
+    //Throwing
+    [HideInInspector]
+    public HeldObjectType heldObjectType = HeldObjectType.Lure;
+    #endregion
+
     #region Private Variables
     //References
     private Rigidbody2D rb2d;
+    private Transform creature;
 
     //Input
     private Vector2 aimInput = new Vector2 ();
+    #endregion
+
+    #region Enums
+    public enum HeldObjectType { Creature, Lure}
     #endregion
 
     #region Mono Methods
@@ -42,6 +51,7 @@ public class ThrowController : MonoBehaviour {
             Debug.Break ();
         }
         rb2d = GetComponent<Rigidbody2D> ();
+        creature = GameObject.FindGameObjectWithTag ("Creature").transform;
     }
 
     private void Update() {
@@ -51,15 +61,7 @@ public class ThrowController : MonoBehaviour {
             lineRenderer.enabled = true;
             SetLinePoints ();
             if (Input.GetKeyDown (KeyCode.LeftShift)) {
-                Transform lureTrans = ((GameObject)Instantiate (lurePrefab)).transform;
-                if (releasePosition == null)
-                    lureTrans.position = transform.position;
-                else
-                    lureTrans.position = releasePosition.position;
-
-                Rigidbody2D lureBody = lureTrans.GetComponent<Rigidbody2D> ();
-                lureBody.velocity = (GetThrowVelocity () * throwSpeed) + rb2d.velocity;
-                lureBody.gravityScale = Mathf.Abs ((gravity * throwSpeed * throwSpeed) / Physics.gravity.y);
+                Throw ();
             }
         } else {
             lineRenderer.enabled = false;
@@ -104,6 +106,28 @@ public class ThrowController : MonoBehaviour {
     #region Input Methods
     private void GetAimInput() {
         aimInput = new Vector2 (Input.GetAxisRaw (aimHorStringInput), Input.GetAxisRaw (aimVerStringInput));
+    }
+
+    private void Throw() {
+        if (heldObjectType == HeldObjectType.Lure) {
+            Transform lureTrans = ((GameObject)Instantiate (lurePrefab)).transform;
+            lureTrans.name = "Lure";
+            if (releasePosition == null)
+                lureTrans.position = transform.position;
+            else
+                lureTrans.position = releasePosition.position;
+
+            Rigidbody2D lureBody = lureTrans.GetComponent<Rigidbody2D> ();
+            lureBody.velocity = (GetThrowVelocity () * throwSpeed) + rb2d.velocity;
+            lureBody.gravityScale = Mathf.Abs ((gravity * throwSpeed * throwSpeed) / Physics.gravity.y);
+        } else {
+            heldObjectType = HeldObjectType.Lure;
+            creature.parent = null;
+            Rigidbody2D creatureRB = creature.GetComponent<Rigidbody2D> ();
+            creatureRB.isKinematic = false;
+            creatureRB.velocity = (GetThrowVelocity () * throwSpeed) + rb2d.velocity;
+            creatureRB.gravityScale = Mathf.Abs ((gravity * throwSpeed * throwSpeed) / Physics.gravity.y);
+        }
     }
     #endregion
 

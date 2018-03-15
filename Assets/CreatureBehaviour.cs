@@ -27,10 +27,13 @@ public class CreatureBehaviour : MonoBehaviour
 
     bool isJumping;
 
+    PlayerController player;
+
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         rigidbody = GetComponentInChildren<Rigidbody2D>();
+        player = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerController> ();
     }
 
     // Update is called once per frame
@@ -41,12 +44,20 @@ public class CreatureBehaviour : MonoBehaviour
         StartCoroutine(CheckForDistracton());
         StartCoroutine(CheckForLure());
 
+        ///////
         //Delete this later
+        /////
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject lureClone = (GameObject)Instantiate(lurePrefab, lureSpawn.position, Quaternion.identity);
-            lureClone.name = "Lure";
+            player.throwingController.heldObjectType = ThrowController.HeldObjectType.Creature;
+            transform.parent = GameObject.FindGameObjectWithTag ("Player").transform;
+            transform.localPosition = new Vector3 (0f, 2.3f, 0f);
+            rigidbody.isKinematic = true;
+            //GameObject lureClone = (GameObject)Instantiate(lurePrefab, lureSpawn.position, Quaternion.identity);
+            //lureClone.name = "Lure";
         }
+        /////
+        /////
 
 
     }
@@ -83,12 +94,16 @@ public class CreatureBehaviour : MonoBehaviour
         {
             velocity = Vector3.zero;
         }
-        else if (currentState == States.Seek)
+        else if ((currentState == States.Seek) && (lure != null))
         {
             force = Seek(lure);
             velocity += force * Time.deltaTime;
             velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
             transform.position += velocity * Time.deltaTime;
+            if (Vector2.Distance(transform.position, lure.transform.position) < 0.5f) {
+                Destroy (lure);
+                SetState (States.Idle);
+            }
         }
         else if (currentState == States.Jump)
         {

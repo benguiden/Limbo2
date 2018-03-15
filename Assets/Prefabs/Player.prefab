@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 114352659414302388}
   - component: {fileID: 50733282637758222}
   - component: {fileID: 61965637850185546}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -69,8 +69,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1883711648903534}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -5.261855, y: -2.16, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 4437470322586348}
   - {fileID: 4223813667941288}
@@ -97,8 +97,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1408562651038174}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_LocalPosition: {x: 0, y: -0.32, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4202581508310830}
   m_RootOrder: 0
@@ -159,18 +159,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74d39b44d227b2b49b19cf73c59936d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwSpeed: 2
-  horizontalSpeedRange: {x: 0, y: 10}
-  verticalSpeedRange: {x: 5, y: 10}
-  gravity: -15
+  throwSpeed: 1.5
+  horizontalSpeedRange: {x: 0, y: 8}
+  verticalSpeedRange: {x: 3, y: 8}
+  gravity: -11
   releasePosition: {fileID: 4223813667941288}
   lineRenderer: {fileID: 120555266472482084}
-  lineLength: 12
+  lineLength: 8
   lineResolution: 32
   throwInputString: Fire1
   aimHorStringInput: AimHorizontal
   aimVerStringInput: AimVertical
   lurePrefab: {fileID: 1079130937065050, guid: ad4354fa4e460a344b4ddfcb38c4aa65, type: 2}
+  heldObjectType: 1
 --- !u!114 &114437370161445552
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -182,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53a69a044cfb6514ca62ed1f0a257e8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalSpeed: 7
+  horizontalSpeed: 5
   accelerationTime: 0.5
   decelerationTime: 0.3
   horizontalCurve:
@@ -209,16 +210,18 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  jumpHeight: 6
-  riseTime: 0.6
-  fallTime: 0.45
+  jumpHeight: 2
+  riseTime: 0.4
+  fallTime: 0.25
   horizontalInputString: Horizontal
   jumpInputString: Jump
   groundedLayer:
     serializedVersion: 2
     m_Bits: 264
+  playerSpriteRenderer: {fileID: 212696792730612444}
   velocity: {x: 0, y: 0}
   isGrounded: 1
+  throwingController: {fileID: 0}
 --- !u!120 &120555266472482084
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -253,39 +256,7 @@ LineRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 90
-  m_Positions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0.38709676, y: 0.37510926, z: 0}
-  - {x: 0.7741935, y: 0.7262435, z: 0}
-  - {x: 1.1612903, y: 1.0534027, z: 0}
-  - {x: 1.548387, y: 1.3565869, z: 0}
-  - {x: 1.9354838, y: 1.635796, z: 0}
-  - {x: 2.3225806, y: 1.8910301, z: 0}
-  - {x: 2.7096775, y: 2.1222894, z: 0}
-  - {x: 3.096774, y: 2.3295734, z: 0}
-  - {x: 3.483871, y: 2.5128825, z: 0}
-  - {x: 3.8709676, y: 2.6722164, z: 0}
-  - {x: 4.2580647, y: 2.8075755, z: 0}
-  - {x: 4.645161, y: 2.9189594, z: 0}
-  - {x: 5.032258, y: 3.0063684, z: 0}
-  - {x: 5.419355, y: 3.0698023, z: 0}
-  - {x: 5.806452, y: 3.1092613, z: 0}
-  - {x: 6.193548, y: 3.1247451, z: 0}
-  - {x: 6.580645, y: 3.1162539, z: 0}
-  - {x: 6.967742, y: 3.0837877, z: 0}
-  - {x: 7.354839, y: 3.0273464, z: 0}
-  - {x: 7.7419353, y: 2.9469304, z: 0}
-  - {x: 8.129032, y: 2.842539, z: 0}
-  - {x: 8.5161295, y: 2.7141726, z: 0}
-  - {x: 8.903226, y: 2.5618315, z: 0}
-  - {x: 9.290322, y: 2.3855155, z: 0}
-  - {x: 9.67742, y: 2.1852236, z: 0}
-  - {x: 10.064516, y: 1.9609574, z: 0}
-  - {x: 10.451612, y: 1.7127162, z: 0}
-  - {x: 10.83871, y: 1.4404992, z: 0}
-  - {x: 11.225806, y: 1.144308, z: 0}
-  - {x: 11.612904, y: 0.8241408, z: 0}
-  - {x: 12, y: 0.47999957, z: 0}
+  m_Positions: []
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 0.2
@@ -377,8 +348,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 55
-  m_Sprite: {fileID: 21300000, guid: bcaa506946cb38d4e88d581f0929e77a, type: 3}
-  m_Color: {r: 0.32403636, g: 0.30882353, b: 0.75, a: 1}
+  m_Sprite: {fileID: 21300002, guid: f102ea47ce66331459e2a7e093a84572, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

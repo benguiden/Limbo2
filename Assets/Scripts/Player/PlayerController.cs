@@ -6,23 +6,26 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     #region Public Variables
-    [Header("Movement")]
+    [Header ("Movement")]
     public float horizontalSpeed = 4f;
     public float accelerationTime = 0.5f;
     public float decelerationTime = 0.4f;
     public AnimationCurve horizontalCurve;
 
-    [Header("Jumping")]
+    [Header ("Jumping")]
     public float jumpHeight = 4f;
-    public float riseTime = 0.75f; 
+    public float riseTime = 0.75f;
     public float fallTime = 0.35f;
 
-    [Header("Input")]
+    [Header ("Input")]
     public string horizontalInputString = "Horizontal"; //Left Joystick
     public string jumpInputString = "Jump"; //A on Xbox controller
 
     [Header ("Collisions")]
     public LayerMask groundedLayer = 8;
+
+    [Header ("Visuals")]
+    public SpriteRenderer playerSpriteRenderer;
     #endregion
 
     #region Hidden Variables
@@ -33,6 +36,10 @@ public class PlayerController : MonoBehaviour {
     //Jumping
     [HideInInspector]
     public bool isGrounded = false;
+
+    //References
+    [HideInInspector]
+    public ThrowController throwingController;
     #endregion
 
     #region Private Variables
@@ -80,6 +87,7 @@ public class PlayerController : MonoBehaviour {
         //References
         rb2d = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D> ();
+        throwingController = GetComponent<ThrowController> ();
 
         //Calculations
         CalculateJump ();
@@ -97,6 +105,9 @@ public class PlayerController : MonoBehaviour {
         velocity.y = rb2d.velocity.y;
         UpdateJumpMovement ();
         UpdateGravity ();
+
+        //Update Visuals
+        UpdateSpriteFlip ();
 
         //Alter Rigidbody
         UpdateRigidbody();
@@ -194,6 +205,15 @@ public class PlayerController : MonoBehaviour {
                 isGrounded = true;
             }
         }
+    }
+    #endregion
+
+    #region Visual Methods
+    private void UpdateSpriteFlip() {
+        if (velocity.x < 0f)
+            playerSpriteRenderer.flipX = false;
+        else
+            playerSpriteRenderer.flipX = true;
     }
     #endregion
 

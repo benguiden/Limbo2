@@ -16,6 +16,7 @@ public class PuzzleButton : MonoBehaviour {
     
     private void OnTriggerStay2D(Collider2D other)
     {
+
         if(other.tag == "Player")
         {
             if (triggerType == TriggerType.Player)
