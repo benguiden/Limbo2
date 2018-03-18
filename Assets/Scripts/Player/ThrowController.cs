@@ -8,12 +8,14 @@ public class ThrowController : MonoBehaviour {
     public Vector2 horizontalSpeedRange = new Vector2 (2f, 10f);
     public Vector2 verticalSpeedRange = new Vector2 (2f, 10f);
     public float gravity = -20f;
+    public float gravityK = -20f;
     public Transform releasePosition;
 
     [Header ("Visuals")]
     public LineRenderer lineRenderer;
     public float lineLength = 5f;
     public uint lineResolution = 32;
+    public float lineTime = 1.5f;
 
     [Header ("Input")]
     public string throwInputString = "Fire1";
@@ -56,13 +58,14 @@ public class ThrowController : MonoBehaviour {
 
     private void Update() {
         GetAimInput ();
-
+        aimInput.x = 1f;
+        aimInput.y = 1f;
         if ((aimInput.x != 0f) || (aimInput.y != 0f)) {
             lineRenderer.enabled = true;
             SetLinePoints ();
-            if (Input.GetKeyDown (KeyCode.LeftShift)) {
+            //if (Input.GetKeyDown (KeyCode.LeftShift)) {
                 Throw ();
-            }
+            //}
         } else {
             lineRenderer.enabled = false;
         }
@@ -83,20 +86,23 @@ public class ThrowController : MonoBehaviour {
         return throwVelocity;
     }
 
-    private Vector3[] ProjectionPositions(uint resolution, Vector2 initalVelocity) {
+    private Vector3[] ProjectionPositions(uint resolution, Vector2 velocity) {
         Vector3[] points = new Vector3[(int)resolution];
-        float side = Mathf.Sign (initalVelocity.x);
-        initalVelocity.x = Mathf.Abs (initalVelocity.x);
 
-        for (int i=0; i<points.Length; i++) {
-            points[i].x = (lineLength * Mathf.Abs (aimInput.x + (0.001f * resolution)) * (float)i) / ((float)resolution - 1f);
-            float timeAtX = 0f;
-            if (initalVelocity.x == 0f)
-                timeAtX = 0.01f;
-            else
-                timeAtX = points[i].x / (initalVelocity.x * throwSpeed);
-            points[i].y = (timeAtX * initalVelocity.y * throwSpeed) + ((gravity * timeAtX * timeAtX * throwSpeed * throwSpeed) / 2f);
-            points[i].x *= side;
+        float timeDelta = (lineTime * throwSpeed) / resolution;
+
+        velocity.y += -Mathf.Abs(gravityK * 1f) * timeDelta * throwSpeed;
+
+        for (int i=1; i<points.Length; i++) {
+            Vector2 lastPoint = points[i - 1];
+            Vector2 displacement = Vector2.zero;
+
+            displacement.x = velocity.x * timeDelta * throwSpeed;
+            points[i].x = lastPoint.x + displacement.x;
+
+            displacement.y = velocity.y * timeDelta * throwSpeed;
+            points[i].y = lastPoint.y + displacement.y;
+            velocity.y += -Mathf.Abs(gravityK * 0.65f) * timeDelta * throwSpeed;
         }
 
         return points;
