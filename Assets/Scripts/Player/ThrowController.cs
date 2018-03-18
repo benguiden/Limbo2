@@ -8,12 +8,10 @@ public class ThrowController : MonoBehaviour {
     public Vector2 horizontalSpeedRange = new Vector2 (2f, 10f);
     public Vector2 verticalSpeedRange = new Vector2 (2f, 10f);
     public float gravity = -20f;
-    public float gravityK = -20f;
     public Transform releasePosition;
 
     [Header ("Visuals")]
     public LineRenderer lineRenderer;
-    public float lineLength = 5f;
     public uint lineResolution = 32;
     public float lineTime = 1.5f;
 
@@ -58,14 +56,13 @@ public class ThrowController : MonoBehaviour {
 
     private void Update() {
         GetAimInput ();
-        aimInput.x = 1f;
-        aimInput.y = 1f;
         if ((aimInput.x != 0f) || (aimInput.y != 0f)) {
             lineRenderer.enabled = true;
             SetLinePoints ();
-            //if (Input.GetKeyDown (KeyCode.LeftShift)) {
+            
+            if (Input.GetKeyDown (KeyCode.LeftControl)) {
                 Throw ();
-            //}
+            }
         } else {
             lineRenderer.enabled = false;
         }
@@ -89,20 +86,18 @@ public class ThrowController : MonoBehaviour {
     private Vector3[] ProjectionPositions(uint resolution, Vector2 velocity) {
         Vector3[] points = new Vector3[(int)resolution];
 
-        float timeDelta = (lineTime * throwSpeed) / resolution;
-
-        velocity.y += -Mathf.Abs(gravityK * 1f) * timeDelta * throwSpeed;
+        float timeDelta = lineTime / resolution;
 
         for (int i=1; i<points.Length; i++) {
             Vector2 lastPoint = points[i - 1];
             Vector2 displacement = Vector2.zero;
 
-            displacement.x = velocity.x * timeDelta * throwSpeed;
+            displacement.x = velocity.x * timeDelta;
             points[i].x = lastPoint.x + displacement.x;
 
-            displacement.y = velocity.y * timeDelta * throwSpeed;
+            displacement.y = velocity.y * timeDelta;
             points[i].y = lastPoint.y + displacement.y;
-            velocity.y += -Mathf.Abs(gravityK * 0.65f) * timeDelta * throwSpeed;
+            velocity.y += (gravity / 1.95f) * timeDelta;
         }
 
         return points;
@@ -124,14 +119,14 @@ public class ThrowController : MonoBehaviour {
                 lureTrans.position = releasePosition.position;
 
             Rigidbody2D lureBody = lureTrans.GetComponent<Rigidbody2D> ();
-            lureBody.velocity = (GetThrowVelocity () * throwSpeed) + rb2d.velocity;
+            lureBody.velocity = (GetThrowVelocity () * throwSpeed) + new Vector2 (rb2d.velocity.x, 0f);
             lureBody.gravityScale = Mathf.Abs ((gravity * throwSpeed * throwSpeed) / Physics.gravity.y);
         } else {
             heldObjectType = HeldObjectType.Lure;
             creature.parent = null;
             Rigidbody2D creatureRB = creature.GetComponent<Rigidbody2D> ();
             creatureRB.isKinematic = false;
-            creatureRB.velocity = (GetThrowVelocity () * throwSpeed) + rb2d.velocity;
+            creatureRB.velocity = (GetThrowVelocity () * throwSpeed) + new Vector2 (rb2d.velocity.x, 0f);
             creatureRB.gravityScale = Mathf.Abs ((gravity * throwSpeed * throwSpeed) / Physics.gravity.y);
         }
     }

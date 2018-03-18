@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 212788824106582616}
   - component: {fileID: 50473841586281318}
   - component: {fileID: 61133887498311932}
-  - component: {fileID: 114850533172368258}
   m_Layer: 9
   m_Name: Lure
   m_TagString: distraction
@@ -88,17 +87,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114850533172368258
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1079130937065050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 742915d40901f2048aac57f16ab18b18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &212788824106582616
 SpriteRenderer:
   m_ObjectHideFlags: 1

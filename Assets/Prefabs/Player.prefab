@@ -159,14 +159,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74d39b44d227b2b49b19cf73c59936d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwSpeed: 1.5
-  horizontalSpeedRange: {x: 0, y: 8}
-  verticalSpeedRange: {x: 3, y: 8}
-  gravity: -11
+  throwSpeed: 1
+  horizontalSpeedRange: {x: 0, y: 8.64}
+  verticalSpeedRange: {x: 5, y: 11.52}
+  gravity: -12.1
   releasePosition: {fileID: 4223813667941288}
   lineRenderer: {fileID: 120555266472482084}
-  lineLength: 8
   lineResolution: 32
+  lineTime: 3
   throwInputString: Fire1
   aimHorStringInput: AimHorizontal
   aimVerStringInput: AimVertical
@@ -259,30 +259,30 @@ LineRenderer:
   m_Positions: []
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 0.2
+    widthMultiplier: 0.15
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 2
         time: 0
-        value: 0
-        inSlope: 19.902964
-        outSlope: 19.902964
+        value: 0.2909088
+        inSlope: 1.6272928
+        outSlope: 1.6272928
         tangentMode: 0
       - serializedVersion: 2
-        time: 0.13941956
+        time: 1
         value: 1
-        inSlope: 0
-        outSlope: 0
+        inSlope: 0.8727274
+        outSlope: 0.8727274
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 0
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0.022058845, b: 0.042292412, a: 0}
-      key1: {r: 0.8308824, g: 0.097750865, b: 0.097750865, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 1}
+      key0: {r: 0.75, g: 0.10477942, b: 0.118129015, a: 1}
+      key1: {r: 0.7490196, g: 0.105882354, b: 0.11764706, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
@@ -297,9 +297,9 @@ LineRenderer:
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 8674
+      atime1: 53199
       atime2: 65535
-      atime3: 0
+      atime3: 65535
       atime4: 0
       atime5: 0
       atime6: 0
