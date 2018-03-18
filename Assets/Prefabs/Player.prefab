@@ -167,7 +167,7 @@ MonoBehaviour:
   lineRenderer: {fileID: 120555266472482084}
   lineResolution: 32
   lineTime: 3
-  throwInputString: Fire1
+  throwInputString: Throw
   aimHorStringInput: AimHorizontal
   aimVerStringInput: AimVertical
   lurePrefab: {fileID: 1079130937065050, guid: ad4354fa4e460a344b4ddfcb38c4aa65, type: 2}

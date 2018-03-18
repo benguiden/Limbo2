@@ -106,6 +106,8 @@ MonoBehaviour:
   lurePrefab: {fileID: 1079130937065050, guid: ad4354fa4e460a344b4ddfcb38c4aa65, type: 2}
   lureSpawn: {fileID: 0}
   lure: {fileID: 0}
+  pickUpString: PickUp
+  pickUpDistance: 1
 --- !u!212 &212672787650944614
 SpriteRenderer:
   m_ObjectHideFlags: 1

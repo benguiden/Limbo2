@@ -10,7 +10,7 @@ public class CreatureBehaviour : MonoBehaviour
     [SerializeField]
     States currentState = States.None;
 
-    Rigidbody2D rigidbody;
+    new Rigidbody2D rigidbody;
 
     public float moveSpeed;
     public float maxSpeed;
@@ -23,6 +23,10 @@ public class CreatureBehaviour : MonoBehaviour
     public Transform lureSpawn; //Temporary variable, delete later
     public GameObject lure;
 
+
+    [Header ("Picking Up")]
+    public string pickUpString = "PickUp";
+    public float pickUpDistance = 1.5f;
     GameObject finalDistraction;
 
     bool isJumping;
@@ -44,22 +48,15 @@ public class CreatureBehaviour : MonoBehaviour
         StartCoroutine(CheckForDistracton());
         StartCoroutine(CheckForLure());
 
-        ///////
-        //Delete this later
-        /////
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            player.throwingController.heldObjectType = ThrowController.HeldObjectType.Creature;
-            transform.parent = GameObject.FindGameObjectWithTag ("Player").transform;
-            transform.localPosition = new Vector3 (0f, 2.3f, 0f);
-            rigidbody.isKinematic = true;
-            //GameObject lureClone = (GameObject)Instantiate(lurePrefab, lureSpawn.position, Quaternion.identity);
-            //lureClone.name = "Lure";
+        //Pick up creature
+        if ((player.throwingController.heldObjectType != ThrowController.HeldObjectType.Creature) && (Input.GetAxisRaw (pickUpString) >= 0.5f)) {
+            if (Vector2.Distance((Vector2)transform.position, (Vector2)player.transform.position) <= pickUpDistance) {
+                player.throwingController.heldObjectType = ThrowController.HeldObjectType.Creature;
+                transform.parent = GameObject.FindGameObjectWithTag ("Player").transform;
+                transform.localPosition = new Vector3 (0f, 2.3f, 0f);
+                rigidbody.isKinematic = true;
+            }
         }
-        /////
-        /////
-
-
     }
 
     public void SetState(States newState)

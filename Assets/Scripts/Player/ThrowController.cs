@@ -37,6 +37,8 @@ public class ThrowController : MonoBehaviour {
 
     //Input
     private Vector2 aimInput = new Vector2 ();
+    private bool throwInput = false;
+    private bool throwInputLast = false;
     #endregion
 
     #region Enums
@@ -55,12 +57,13 @@ public class ThrowController : MonoBehaviour {
     }
 
     private void Update() {
+        UpdateThrowInput ();
         GetAimInput ();
         if ((aimInput.x != 0f) || (aimInput.y != 0f)) {
             lineRenderer.enabled = true;
             SetLinePoints ();
             
-            if (Input.GetKeyDown (KeyCode.LeftControl)) {
+            if (throwInput) {
                 Throw ();
             }
         } else {
@@ -128,6 +131,19 @@ public class ThrowController : MonoBehaviour {
             creatureRB.isKinematic = false;
             creatureRB.velocity = (GetThrowVelocity () * throwSpeed) + new Vector2 (rb2d.velocity.x, 0f);
             creatureRB.gravityScale = Mathf.Abs ((gravity * throwSpeed * throwSpeed) / Physics.gravity.y);
+        }
+    }
+
+    private void UpdateThrowInput() {
+        if (Input.GetAxisRaw (throwInputString) > 0f) {
+            if (throwInputLast)
+                throwInput = false;
+            else
+                throwInput = true;
+            throwInputLast = true;
+        } else {
+            throwInput = false;
+            throwInputLast = false;
         }
     }
     #endregion
