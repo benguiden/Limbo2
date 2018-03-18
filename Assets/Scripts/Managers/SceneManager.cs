@@ -13,9 +13,12 @@ public class SceneManager : MonoBehaviour {
     public Transform loadedRoomParent;
     [HideInInspector]
     public PuzzleRoom loadedRoomPuzzle;
+    [HideInInspector]
+    public bool canLoad = false;
 
     [Header ("Scene Objects")]
     public PlayerController player;
+    public CreatureBehaviour creature;
     #endregion
 
     #region Private Variables
@@ -43,16 +46,24 @@ public class SceneManager : MonoBehaviour {
     }
 
     private IEnumerator ILoadRoom() {
+        canLoad = false;
+
         //Unload current room
         if (loadedRoomParent.childCount > 0) {
             Destroy (loadedRoomParent.GetChild (0).gameObject);
         }
 
-        loadedRoomPuzzle = GameObject.Instantiate (rooms[roomIndex].gameObject, loadedRoomParent).GetComponent<PuzzleRoom> ();
+        loadedRoomPuzzle = Instantiate (rooms[roomIndex].gameObject, loadedRoomParent).GetComponent<PuzzleRoom> ();
         loadedRoomPuzzle.transform.localPosition = Vector3.zero;
         loadedRoomPuzzle.gameObject.SetActive (true);
 
+        player.transform.position = loadedRoomPuzzle.playerSpawn.position;
+        creature.transform.position = loadedRoomPuzzle.creatureSpawn.position;
+
         yield return null;
+
+        loadRoomCo = null;
+        canLoad = true;
     }
     #endregion
 

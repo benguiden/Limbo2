@@ -5,6 +5,8 @@ using UnityEngine;
 public class PuzzleRoom : MonoBehaviour {
 
     public Vector2 size;
+    public Transform playerSpawn;
+    public Transform creatureSpawn;
 
     #region Mono Methods
     private void OnDrawGizmos() {
