@@ -1,21 +1,18 @@
 fileFormatVersion: 2
-guid: f102ea47ce66331459e2a7e093a84572
-timeCreated: 1521151252
+guid: 246ec15ecfdfbfa48a487512f02bb565
+timeCreated: 1521476731
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: spr_Platform01
-    21300002: spr_Player_Temp
-    21300004: spr_CreatureTemp
-    21300006: spr_Ruin01
-    21300008: spr_Ruin02
-    21300010: spr_Ruin03
-    21300012: spr_Door01
-    21300014: spr_Door02
-    21300016: spr_Ruin04
-    21300018: spr_Ruin05
-    21300020: spr_Platform02
-    21300022: spr_Platform03
+    21300000: spr_Ladder_01
+    21300002: spr_Ladder_02
+    21300004: spr_Ladder_03
+    21300006: spr_BlueFlower
+    21300008: spr_Spike_01
+    21300010: spr_Spike_02
+    21300012: spr_Spike_03
+    21300014: spr_Pad_Off
+    21300016: spr_Pad_On
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -112,169 +109,127 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spr_Platform01
+      name: spr_Ladder_01
       rect:
         serializedVersion: 2
-        x: 55
-        y: 756
-        width: 522
-        height: 93
+        x: 67
+        y: 545
+        width: 62
+        height: 125
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: spr_Player_Temp
+      name: spr_Ladder_02
       rect:
         serializedVersion: 2
-        x: 686
-        y: 630
-        width: 137
-        height: 396
+        x: 153
+        y: 539
+        width: 62
+        height: 244
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spr_Ladder_03
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 535
+        width: 62
+        height: 475
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spr_BlueFlower
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 821
+        width: 125
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spr_Spike_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 341
+        width: 278
+        height: 116
       alignment: 9
-      pivot: {x: 0.33686417, y: 0.012210422}
+      pivot: {x: 0.5, y: 0.09991876}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: spr_CreatureTemp
+      name: spr_Spike_02
       rect:
         serializedVersion: 2
-        x: 889
-        y: 729
-        width: 106
-        height: 101
-      alignment: 9
-      pivot: {x: 0.5451816, y: 0.442045}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: spr_Ruin01
-      rect:
-        serializedVersion: 2
-        x: 1164
-        y: 896
-        width: 346
-        height: 88
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: spr_Ruin02
-      rect:
-        serializedVersion: 2
-        x: 1199
-        y: 776
-        width: 98
-        height: 93
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: spr_Ruin03
-      rect:
-        serializedVersion: 2
-        x: 1117
-        y: 627
-        width: 412
-        height: 74
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: spr_Door01
-      rect:
-        serializedVersion: 2
-        x: 1637
-        y: 755
-        width: 234
-        height: 300
-      alignment: 9
-      pivot: {x: 0.47234428, y: 0.037892252}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: spr_Door02
-      rect:
-        serializedVersion: 2
-        x: 1632
-        y: 403
-        width: 239
-        height: 292
-      alignment: 9
-      pivot: {x: 0.46089682, y: 0.05020172}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: spr_Ruin04
-      rect:
-        serializedVersion: 2
-        x: 1179
-        y: 532
-        width: 262
-        height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: spr_Ruin05
-      rect:
-        serializedVersion: 2
-        x: 1116
-        y: 414
-        width: 409
-        height: 74
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: spr_Platform02
-      rect:
-        serializedVersion: 2
-        x: 31
-        y: 415
-        width: 1022
+        x: 51
+        y: 197
+        width: 541
         height: 121
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.061383333}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: spr_Platform03
+      name: spr_Spike_03
       rect:
         serializedVersion: 2
-        x: 37
-        y: 72
-        width: 1783
-        height: 189
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 35
+        y: 60
+        width: 1024
+        height: 123
+      alignment: 9
+      pivot: {x: 0.5, y: 0.110426925}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spr_Pad_Off
+      rect:
+        serializedVersion: 2
+        x: 1217
+        y: 78
+        width: 438
+        height: 60
+      alignment: 9
+      pivot: {x: 0.5, y: 0.40423405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spr_Pad_On
+      rect:
+        serializedVersion: 2
+        x: 1213
+        y: 207
+        width: 438
+        height: 336
+      alignment: 9
+      pivot: {x: 0.5, y: 0.069243886}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

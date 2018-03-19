@@ -14,7 +14,7 @@ public class PuzzleButton : MonoBehaviour {
 
     public bool isActivated;
 
-    public GameObject interactObject;
+    public Interactable interactObject;
     public PuzzleButton twinButton;
 
     [Header ("Visuals")]
@@ -109,16 +109,17 @@ public class PuzzleButton : MonoBehaviour {
 
     private void EnactBehaviour(BehaviourTypes behaviour)
     {
+        interactObject.ButtonInteract ();
         switch (behaviour)
         {
             case BehaviourTypes.ActivateObject:
-                ActivateObject(interactObject);
+                //ActivateObject(interactObject);
                 break;
             case BehaviourTypes.DeactivateObject:
-                DeActivateObject(interactObject);
+                //DeActivateObject(interactObject);
                 break;
             case BehaviourTypes.OpenDoor:
-                OpenDoor(interactObject);
+                //OpenDoor(interactObject);
                 break;
         }
 
