@@ -92,13 +92,18 @@ public class SceneManager : MonoBehaviour {
         loadedRoomPuzzle.transform.localPosition = Vector3.zero;
         loadedRoomPuzzle.gameObject.SetActive (true);
 
-        player.transform.position = loadedRoomPuzzle.playerSpawn.position;
-        creature.transform.position = loadedRoomPuzzle.creatureSpawn.position;
-
         yield return null;
+
+        ResetObjects ();
 
         loadRoomCo = null;
         canLoad = true;
+    }
+
+    private void ResetObjects() {
+        player.transform.position = loadedRoomPuzzle.playerSpawn.position;
+        creature.transform.position = loadedRoomPuzzle.creatureSpawn.position;
+        Camera.main.orthographicSize = loadedRoomPuzzle.size.y / 2f;
     }
     #endregion
 

@@ -11,7 +11,7 @@ public class PuzzleRoom : MonoBehaviour {
     #region Mono Methods
     private void OnDrawGizmos() {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireCube (transform.position, new Vector3 (size.x, size.y, 1f));
+        Gizmos.DrawWireCube (transform.position, new Vector3 (size.y * 1.7778f, size.y, 1f));
     }
 
     private void Start() {
