@@ -212,7 +212,7 @@ public class PlayerController : MonoBehaviour {
     private void UpdateSpriteFlip() {
         if (velocity.x < 0f)
             playerSpriteRenderer.flipX = false;
-        else
+        else if (velocity.x > 0f)
             playerSpriteRenderer.flipX = true;
     }
     #endregion

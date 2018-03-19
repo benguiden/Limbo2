@@ -19,10 +19,17 @@ public class SceneManager : MonoBehaviour {
     [Header ("Scene Objects")]
     public PlayerController player;
     public CreatureBehaviour creature;
+
+    [Header ("Input")]
+    public string restartInputString = "Restart";
     #endregion
 
     #region Private Variables
     private Coroutine loadRoomCo;
+
+    //Input
+    private bool restartInput = false;
+    private bool restartInputLast = false;
     #endregion
 
     #region Mono Methods
@@ -33,6 +40,14 @@ public class SceneManager : MonoBehaviour {
     private void Start() {
         LoadRoom ();
     }
+
+    private void Update() {
+        //Restart Input
+        UpdateRestartInput ();
+        if (restartInput) {
+            LoadRoom ();
+        }
+    }
     #endregion
 
     #region Set up Methods
@@ -42,6 +57,26 @@ public class SceneManager : MonoBehaviour {
             Debug.Break ();
         } else {
             loadRoomCo = StartCoroutine (ILoadRoom ());
+        }
+    }
+
+    public void LoadRoom(int newRoomIndex) {
+        roomIndex = newRoomIndex;
+        if (roomIndex >= rooms.Length) {
+            Debug.LogError ("Error: Room Index out of bounds.");
+            Debug.Break ();
+        } else {
+            LoadRoom ();
+        }
+    }
+
+    public void LoadNextRoom() {
+        roomIndex++;
+        if (roomIndex >= rooms.Length) {
+            Debug.LogError ("Error: Room Index out of bounds.");
+            Debug.Break ();
+        } else {
+            LoadRoom ();
         }
     }
 
@@ -64,6 +99,21 @@ public class SceneManager : MonoBehaviour {
 
         loadRoomCo = null;
         canLoad = true;
+    }
+    #endregion
+
+    #region Input Methods
+    private void UpdateRestartInput() {
+        if (Input.GetAxisRaw (restartInputString) > 0f) {
+            if (restartInputLast)
+                restartInput = false;
+            else
+                restartInput = true;
+            restartInputLast = true;
+        } else {
+            restartInput = false;
+            restartInputLast = false;
+        }
     }
     #endregion
 

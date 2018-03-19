@@ -29,6 +29,17 @@ public class Door : MonoBehaviour {
         else
             spriteRenderer.sprite = unlockedSprite;
     }
+
+    private void OnTriggerStay2D(Collider2D collision) {
+        if (!locked) {
+            if (collision.gameObject.tag == "Player") {
+                if (SceneManager.main.player.throwingController.heldObjectType == ThrowController.HeldObjectType.Creature) {
+                    //Load To Next Room
+                    SceneManager.main.LoadNextRoom ();
+                }
+            }
+        }
+    }
     #endregion
 
     #region Public Methods
