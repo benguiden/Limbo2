@@ -6,6 +6,9 @@ public class PuzzleButton : MonoBehaviour {
 
     public enum TriggerType { Player, Creature };
     public enum BehaviourTypes { OpenDoor, ActivateObject, DeactivateObject }
+
+    #region Public Variables
+    [Header ("Behaviour")]
     public BehaviourTypes behaviourType; 
     public TriggerType triggerType;
 
@@ -13,7 +16,30 @@ public class PuzzleButton : MonoBehaviour {
 
     public GameObject interactObject;
     public PuzzleButton twinButton;
-    
+
+    [Header ("Visuals")]
+    public Sprite activatedSprite;
+    public Sprite deactivatedSprite;
+    public Vector2 childOffsetY = new Vector2 (0.12f, 0.3f);
+    #endregion
+
+    #region Private Variables
+    //References
+    private SpriteRenderer spriteRenderer;
+    private Transform child;
+    #endregion
+
+    private void Awake() {
+        spriteRenderer = GetComponent<SpriteRenderer> ();
+        if (transform.childCount > 0) {
+            child = transform.GetChild (0);
+        } else {
+            Debug.LogError ("Error: Not child of button object for switch.");
+            Debug.Break ();
+        }
+    }
+
+    #region Messages
     private void OnTriggerStay2D(Collider2D other)
     {
 
@@ -79,6 +105,7 @@ public class PuzzleButton : MonoBehaviour {
         OnRelease();
         isActivated = false;
     }
+    #endregion
 
     private void EnactBehaviour(BehaviourTypes behaviour)
     {
@@ -112,15 +139,15 @@ public class PuzzleButton : MonoBehaviour {
         doorToOpen.SetActive(false);
     }
 
-    
-
     private void OnStep()
     {
-        transform.localScale = new Vector3(1.7f, 0.1f);
+        spriteRenderer.sprite = activatedSprite;
+        child.localPosition = new Vector3 (child.localPosition.x, childOffsetY.x, child.localPosition.z);
     }
 
     private void OnRelease()
     {
-        transform.localScale = new Vector3(1.7f, 0.3f);
+        spriteRenderer.sprite = deactivatedSprite;
+        child.localPosition = new Vector3 (child.localPosition.x, childOffsetY.y, child.localPosition.z);
     }
 }
