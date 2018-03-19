@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour {
 
-    public enum InteractableType {Door, Spikes}
+    public enum InteractableType {Door, Spikes, Ladder}
 
     #region Private Variables
     private InteractableType interactableType;
     private Door door;
     private Spikes spikes;
+    private Ladder ladder;
     #endregion
 
     #region Mono Methods
@@ -22,11 +23,14 @@ public class Interactable : MonoBehaviour {
     public void RefreshReferences() {
         door = GetComponent<Door> ();
         spikes = GetComponent<Spikes> ();
+        ladder = GetComponent<Ladder> ();
 
         if (door != null)
             interactableType = InteractableType.Door;
         else if (spikes != null)
             interactableType = InteractableType.Spikes;
+        else if (ladder != null)
+            interactableType = InteractableType.Ladder;
         else {
             Debug.LogError ("Error: Interactable component with no compatible component included.");
             Debug.Break ();
@@ -41,6 +45,9 @@ public class Interactable : MonoBehaviour {
                     break;
                 case InteractableType.Spikes:
                     spikes.Deactivate ();
+                    break;
+                case InteractableType.Ladder:
+                    ladder.Activate ();
                     break;
             }
         }
