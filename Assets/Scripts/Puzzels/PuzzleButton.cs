@@ -113,10 +113,10 @@ public class PuzzleButton : MonoBehaviour {
         switch (behaviour)
         {
             case BehaviourTypes.ActivateObject:
-                //ActivateObject(interactObject);
+                ActivateObject(interactObject);
                 break;
             case BehaviourTypes.DeactivateObject:
-                //DeActivateObject(interactObject);
+                DeActivateObject(interactObject);
                 break;
             case BehaviourTypes.OpenDoor:
                 //OpenDoor(interactObject);
@@ -125,19 +125,19 @@ public class PuzzleButton : MonoBehaviour {
 
     }
 
-    private void ActivateObject(GameObject objToActivate)
+    private void ActivateObject(Interactable objToActivate)
     {
-        objToActivate.SetActive(true);
+        objToActivate.gameObject.SetActive(true);
     }
 
-    private void DeActivateObject(GameObject objToDeactivate)
+    private void DeActivateObject(Interactable objToDeactivate)
     {
-        objToDeactivate.SetActive(false);
+        objToDeactivate.gameObject.SetActive(false);
     }
 
-    private void OpenDoor(GameObject doorToOpen)
+    private void OpenDoor(Interactable doorToOpen)
     {
-        doorToOpen.SetActive(false);
+        doorToOpen.gameObject.SetActive(false);
     }
 
     private void OnStep()

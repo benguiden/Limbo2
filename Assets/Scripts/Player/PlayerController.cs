@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour {
 
     //Debugging
     private float debugGroundBox = 0f;
-    private List<Vector2> debugGroundedPoint = new List<Vector2> ();
+    private List<Vector2> debugGroundedPoint = new List<Vector2>();
     #endregion
 
     #region Mono Methods
@@ -86,8 +86,8 @@ public class PlayerController : MonoBehaviour {
     private void Awake() {
         //References
         rb2d = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D> ();
-        throwingController = GetComponent<ThrowController> ();
+        boxCollider = GetComponent<BoxCollider2D>();
+        throwingController = GetComponent<ThrowController>();
 
         //Calculations
         CalculateJump ();
@@ -96,18 +96,18 @@ public class PlayerController : MonoBehaviour {
     private void Update() {
         //Get Input
         horizontalInput = Input.GetAxisRaw(horizontalInputString);
-        UpdateJumpInput ();
+        UpdateJumpInput();
 
         //Update Velocity based on the horizontalCurve
         UpdateVelocity();
 
         //Update Jump
         velocity.y = rb2d.velocity.y;
-        UpdateJumpMovement ();
-        UpdateGravity ();
+        UpdateJumpMovement();
+        UpdateGravity();
 
         //Update Visuals
-        UpdateSpriteFlip ();
+        UpdateSpriteFlip();
 
         //Alter Rigidbody
         UpdateRigidbody();
@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour {
         debugGroundedPoint = new List<Vector2> ();
         isGrounded = false;
         if (rb2d.velocity.y <= 0f)
-            CheckGrounded ();
+            CheckGrounded();
     }
     #endregion
 

@@ -52,6 +52,8 @@ public class CreatureBehaviour : MonoBehaviour
         if ((player.throwingController.heldObjectType != ThrowController.HeldObjectType.Creature) && (Input.GetAxisRaw (pickUpString) >= 0.5f)) {
             if (Vector2.Distance((Vector2)transform.position, (Vector2)player.transform.position) <= pickUpDistance) {
                 player.throwingController.heldObjectType = ThrowController.HeldObjectType.Creature;
+
+                SetState(States.None);
                 transform.parent = GameObject.FindGameObjectWithTag ("Player").transform;
                 transform.localPosition = new Vector3 (0f, 2.3f, 0f);
                 rigidbody.isKinematic = true;
@@ -93,13 +95,17 @@ public class CreatureBehaviour : MonoBehaviour
         }
         else if ((currentState == States.Seek) && (lure != null))
         {
-            force = Seek(lure);
-            velocity += force * Time.deltaTime;
-            velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
-            transform.position += velocity * Time.deltaTime;
-            if (Vector2.Distance(transform.position, lure.transform.position) < 0.5f) {
-                Destroy (lure);
-                SetState (States.Idle);
+            if(player.throwingController.heldObjectType != ThrowController.HeldObjectType.Creature)
+            {
+                force = Seek(lure);
+                velocity += force * Time.deltaTime;
+                velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
+                transform.position += velocity * Time.deltaTime;
+                if (Vector2.Distance(transform.position, lure.transform.position) < 0.5f)
+                {
+                    Destroy(lure);
+                    SetState(States.Idle);
+                }
             }
         }
         else if (currentState == States.Jump)
@@ -168,7 +174,7 @@ public class CreatureBehaviour : MonoBehaviour
     private IEnumerator CheckForLure()
     {
         lure = GameObject.Find("Lure");
-        if (lure != null)
+        if (lure != null && player.throwingController.heldObjectType != ThrowController.HeldObjectType.Creature)
         {
             SetState(States.Seek);
         }
