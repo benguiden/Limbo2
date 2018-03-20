@@ -3948,6 +3948,16 @@ Prefab:
       propertyPath: playerSpriteRenderer
       value: 
       objectReference: {fileID: 1746347856}
+    - target: {fileID: 114437370161445552, guid: 3a8343c8e0c868e4c93e25b039d79a9d,
+        type: 2}
+      propertyPath: isGrounded
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114437370161445552, guid: 3a8343c8e0c868e4c93e25b039d79a9d,
+        type: 2}
+      propertyPath: groundedLayer.m_Bits
+      value: 264
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a8343c8e0c868e4c93e25b039d79a9d, type: 2}
   m_IsPrefabParent: 0
@@ -4584,7 +4594,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1611640840}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.48, y: -7, z: 0}
+  m_LocalPosition: {x: 3.8, y: -5.74, z: 0}
   m_LocalScale: {x: 0.5203, y: 1.9499999, z: 1}
   m_Children: []
   m_Father: {fileID: 1392116489}
@@ -6232,8 +6242,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2030220293}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0099983215, y: -5.81, z: 0}
-  m_LocalScale: {x: 6.937342, y: 1, z: 1}
+  m_LocalPosition: {x: 0.0099983215, y: -6.24, z: 0}
+  m_LocalScale: {x: 6.937342, y: 0.46250057, z: 1}
   m_Children: []
   m_Father: {fileID: 1392116489}
   m_RootOrder: 3
