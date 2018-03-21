@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour {
 
     [Header ("Input")]
     public string horizontalInputString = "Horizontal"; //Left Joystick
+    public string verticalInputString = "Vertical"; //Left Joystick
     public string jumpInputString = "Jump"; //A on Xbox controller
 
     [Header ("Collisions")]
@@ -184,8 +185,10 @@ public class PlayerController : MonoBehaviour {
     private void UpdateJumpMovement() {
         if ((jumpInput) && (isGrounded) && (!isClimbing)) {
             velocity.y = jumpVelocity;
-        } else if ((Input.GetAxisRaw(jumpInputString) > 0.5f) && (isClimbing)) {
+        } else if (((Input.GetAxisRaw(jumpInputString) > 0.5f) || (Input.GetAxisRaw(verticalInputString) > 0.5f)) && (isClimbing)) {
             velocity.y = climbingSpeed;
+        } else if ((Input.GetAxisRaw(verticalInputString) < -0.5f) && (isClimbing)) {
+            velocity.y = -climbingSpeed;
         }
     }
 

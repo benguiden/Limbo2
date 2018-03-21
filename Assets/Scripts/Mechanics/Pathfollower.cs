@@ -14,6 +14,9 @@ public class Pathfollower : MonoBehaviour {
     [Header("Movement")]
     public float moveSpeed = 1f;
     public AnimationCurve moveCurve;
+
+    [Header("Interaction")]
+    public bool movesAbove = false;
     #endregion
 
     #region Private Variables
@@ -21,7 +24,6 @@ public class Pathfollower : MonoBehaviour {
     private Transform platform;
 
     //Movement
-    private float pointTime = 0f;
     private Vector2 lastPosition = Vector2.zero;
     private Vector2 displacement = Vector2.zero;
     #endregion
@@ -57,7 +59,8 @@ public class Pathfollower : MonoBehaviour {
     private void Update() {
         UpdatePointTime();
         UpdatePosition();
-        UpdateAllAbove();
+        if (movesAbove)
+            UpdateAllAbove();
     }
     #endregion
 
