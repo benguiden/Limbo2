@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour {
     //References
     [HideInInspector]
     public ThrowController throwingController;
+    public Pathfollower movingPlatform;
     #endregion
 
     #region Private Variables
@@ -123,6 +124,7 @@ public class PlayerController : MonoBehaviour {
 
     #region Movement Methods
     private void UpdateVelocity() {
+        Debug.Log(velocity);
         //Change Time base on input
         if (rb2d.velocity.x == 0f)
             horizontalTime = 0f;
@@ -199,10 +201,14 @@ public class PlayerController : MonoBehaviour {
 
         RaycastHit2D[] boxHits = Physics2D.BoxCastAll (boxOrigin, new Vector2 (boxCollider.size.x, boxHeight), 0f, Vector2.down, boxHeight + (boxCollider.size.y / 2f), groundedLayer);
 
+        movingPlatform = null;
         foreach (RaycastHit2D boxHit in boxHits) {
             if (boxHit) {
                 debugGroundedPoint.Add (boxHit.point);
                 isGrounded = true;
+                if (boxHit.collider.gameObject.tag == "Moving") {
+                    movingPlatform = boxHit.collider.transform.parent.GetComponent<Pathfollower>();
+                }
             }
         }
     }
