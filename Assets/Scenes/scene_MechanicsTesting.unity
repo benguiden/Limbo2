@@ -1262,8 +1262,8 @@ MonoBehaviour:
   pathPointProgress: 0
   pathPoints:
   - {x: -5.04, y: 2.16}
-  - {x: -2.97, y: -4.81}
-  - {x: 4.62, y: -5.71}
+  - {x: -6, y: -3}
+  - {x: 6, y: -3}
   moveSpeed: 1
   moveCurve:
     serializedVersion: 2
@@ -1554,6 +1554,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4202581508310830, guid: 3a8343c8e0c868e4c93e25b039d79a9d, type: 2}
       propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114437370161445552, guid: 3a8343c8e0c868e4c93e25b039d79a9d,
+        type: 2}
+      propertyPath: jumpHeight
       value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []

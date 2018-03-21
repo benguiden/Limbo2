@@ -100,7 +100,7 @@ public class Pathfollower : MonoBehaviour {
         PlayerController player = SceneManager.main.player;
         if (player.isGrounded) {
             if (player.movingPlatform == this) {
-                player.GetComponent<Rigidbody2D>().velocity += displacement;
+                player.transform.position += (Vector3)displacement;
                 //Debug.Log(player.velocity / Time.deltaTime);
             }
         }
