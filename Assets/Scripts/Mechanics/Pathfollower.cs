@@ -28,13 +28,15 @@ public class Pathfollower : MonoBehaviour {
 
     #region Mono Methods
     private void OnDrawGizmos() {
-        Gizmos.color = Color.red;
-        for (int i = 0; i < pathPoints.Length; i++) {
-            Gizmos.DrawWireCube(pathPoints[i] + (Vector2)transform.position, new Vector3(1f, 1f, 1f));
-            if (i ==0) {
-                Gizmos.DrawLine(pathPoints[i] + (Vector2)transform.position, pathPoints[pathPoints.Length - 1] + (Vector2)transform.position);
-            } else {
-                Gizmos.DrawLine(pathPoints[i] + (Vector2)transform.position, pathPoints[i - 1] + (Vector2)transform.position);
+        if (pathPoints != null) {
+            Gizmos.color = Color.red;
+            for (int i = 0; i < pathPoints.Length; i++) {
+                Gizmos.DrawWireCube(pathPoints[i] + (Vector2)transform.position, new Vector3(1f, 1f, 1f));
+                if (i == 0) {
+                    Gizmos.DrawLine(pathPoints[i] + (Vector2)transform.position, pathPoints[pathPoints.Length - 1] + (Vector2)transform.position);
+                } else {
+                    Gizmos.DrawLine(pathPoints[i] + (Vector2)transform.position, pathPoints[i - 1] + (Vector2)transform.position);
+                }
             }
         }
     }
