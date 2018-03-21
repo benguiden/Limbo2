@@ -6,6 +6,7 @@ using UnityEngine;
 public class Ladder : MonoBehaviour {
 
     #region Public Variables
+    public bool startsEnabled = true;
     #endregion
 
     #region Private Variables
@@ -32,7 +33,7 @@ public class Ladder : MonoBehaviour {
 
     #region Mono Messages
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (enabled) {
+        if (startsEnabled) {
             if (collision.gameObject.tag == "Player") {
                 SceneManager.main.player.rb2d.velocity = new Vector2 (SceneManager.main.player.rb2d.velocity.x, 0f);
                 SceneManager.main.player.isClimbing = true;
@@ -41,7 +42,7 @@ public class Ladder : MonoBehaviour {
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
-        if (enabled) {
+        if (startsEnabled) {
             if (collision.gameObject.tag == "Player") {
                 SceneManager.main.player.isClimbing = false;
             }
@@ -51,7 +52,7 @@ public class Ladder : MonoBehaviour {
 
     #region Public Methods
     public void Activate() {
-        enabled = true;
+        startsEnabled = true;
         spriteRenderer.enabled = true;
     }
     #endregion
