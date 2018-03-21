@@ -20,6 +20,14 @@ public class Ladder : MonoBehaviour {
     private void Start() {
         
     }
+
+    private void Update()
+    {
+        if(Input.GetKey(KeyCode.E))
+        {
+            Activate();
+        }
+    }
     #endregion
 
     #region Mono Messages
