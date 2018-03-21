@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour {
     public float riseTime = 0.75f;
     public float fallTime = 0.35f;
 
+    [Header ("Climbing")]
+    public float climbingSpeed = 4f;
+
     [Header ("Input")]
     public string horizontalInputString = "Horizontal"; //Left Joystick
     public string jumpInputString = "Jump"; //A on Xbox controller
@@ -36,10 +39,16 @@ public class PlayerController : MonoBehaviour {
     //Jumping
     [HideInInspector]
     public bool isGrounded = false;
+    [HideInInspector]
+    public bool isClimbing = false;
 
     //References
     [HideInInspector]
     public ThrowController throwingController;
+    [HideInInspector]
+    public Pathfollower movingPlatform;
+    [HideInInspector]
+    public Rigidbody2D rb2d;
     #endregion
 
     #region Private Variables
@@ -57,7 +66,6 @@ public class PlayerController : MonoBehaviour {
     private bool jumpInputLast = false;
 
     //References
-    private Rigidbody2D rb2d;
     private BoxCollider2D boxCollider;
 
     //Debugging
@@ -95,22 +103,25 @@ public class PlayerController : MonoBehaviour {
 
     private void Update() {
         //Get Input
-        horizontalInput = Input.GetAxisRaw(horizontalInputString);
-        UpdateJumpInput();
+        horizontalInput = Input.GetAxisRaw (horizontalInputString);
+        UpdateJumpInput ();
 
         //Update Velocity based on the horizontalCurve
-        UpdateVelocity();
+        UpdateVelocity ();
 
         //Update Jump
-        velocity.y = rb2d.velocity.y;
-        UpdateJumpMovement();
-        UpdateGravity();
+        if (!isClimbing)
+            velocity.y += rb2d.velocity.y;
+        UpdateJumpMovement ();
+        UpdateGravity ();
 
         //Update Visuals
-        UpdateSpriteFlip();
+        UpdateSpriteFlip ();
+    }
 
+    private void LateUpdate() {
         //Alter Rigidbody
-        UpdateRigidbody();
+        UpdateRigidbody ();
     }
 
     private void FixedUpdate() {
@@ -123,6 +134,7 @@ public class PlayerController : MonoBehaviour {
 
     #region Movement Methods
     private void UpdateVelocity() {
+ 
         //Change Time base on input
         if (rb2d.velocity.x == 0f)
             horizontalTime = 0f;
@@ -146,9 +158,9 @@ public class PlayerController : MonoBehaviour {
 
         //Evaluate from curve
         if (horizontalTime >= 0f)
-            velocity.x = horizontalSpeed * horizontalCurve.Evaluate(horizontalTime);
+            velocity.x += horizontalSpeed * horizontalCurve.Evaluate(horizontalTime);
         else
-            velocity.x = horizontalSpeed * -horizontalCurve.Evaluate(-horizontalTime);
+            velocity.x += horizontalSpeed * -horizontalCurve.Evaluate(-horizontalTime);
     }
 
     private void UpdateRigidbody() {
@@ -170,16 +182,20 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void UpdateJumpMovement() {
-        if ((jumpInput) && (isGrounded)) {
+        if ((jumpInput) && (isGrounded) && (!isClimbing)) {
             velocity.y = jumpVelocity;
+        } else if ((Input.GetAxisRaw(jumpInputString) > 0.5f) && (isClimbing)) {
+            velocity.y = climbingSpeed;
         }
     }
 
     private void UpdateGravity() {
-        if (velocity.y <= 0f)
-            velocity.y += gravityDown * Time.deltaTime;
-        else
-            velocity.y += gravityUp * Time.deltaTime;
+        if (!isClimbing) {
+            if (velocity.y <= 0f)
+                velocity.y += gravityDown * Time.deltaTime;
+            else
+                velocity.y += gravityUp * Time.deltaTime;
+        }
     }
 
     private void CalculateJump() {
@@ -199,10 +215,14 @@ public class PlayerController : MonoBehaviour {
 
         RaycastHit2D[] boxHits = Physics2D.BoxCastAll (boxOrigin, new Vector2 (boxCollider.size.x, boxHeight), 0f, Vector2.down, boxHeight + (boxCollider.size.y / 2f), groundedLayer);
 
+        movingPlatform = null;
         foreach (RaycastHit2D boxHit in boxHits) {
             if (boxHit) {
                 debugGroundedPoint.Add (boxHit.point);
                 isGrounded = true;
+                if (boxHit.collider.gameObject.tag == "Moving") {
+                    movingPlatform = boxHit.collider.transform.parent.GetComponent<Pathfollower>();
+                }
             }
         }
     }

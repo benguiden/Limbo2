@@ -8,6 +8,7 @@ TagManager:
   - Creature
   - distraction
   - Ground
+  - Moving
   layers:
   - Default
   - TransparentFX
