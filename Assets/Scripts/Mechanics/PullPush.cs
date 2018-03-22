@@ -15,7 +15,7 @@ public class PullPush : MonoBehaviour {
     private BoxCollider2D boxCollider;
     private SpriteRenderer spriteRenderer;
 
-    public bool isActive;
+    public bool canDeactivate;
 
     private void Awake() {
         boxCollider = GetComponent<BoxCollider2D>();
@@ -62,7 +62,11 @@ public class PullPush : MonoBehaviour {
 
     public void Deactivate()
     {
-        enabled = false;
+        if(canDeactivate)
+        {
+            enabled = false;
+        }
+       
         //Deactivate particle effect
     }
 
