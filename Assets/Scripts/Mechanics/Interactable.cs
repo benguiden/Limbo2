@@ -35,10 +35,9 @@ public class Interactable : MonoBehaviour {
             interactableType = InteractableType.Ladder;
         else if (pullPush != null)
             interactableType = InteractableType.PullPush;
-        else
-        {
-            Debug.LogError("Error: Interactable component with no compatible component included.");
-            Debug.Break();
+        else {
+            Debug.LogError ("Error: Interactable component with no compatible component included.");
+            Debug.Break ();
         }
     }
 
@@ -54,6 +53,9 @@ public class Interactable : MonoBehaviour {
                 case InteractableType.Ladder:
                     Debug.Log("Lower Ladder");
                     ladder.Activate ();
+                    break;
+                case InteractableType.PullPush:
+                    pullPush.enabled = true;
                     break;
             }
         }
