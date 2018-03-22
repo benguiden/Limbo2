@@ -5,7 +5,7 @@ using UnityEngine;
 public class PuzzleButton : MonoBehaviour {
 
     public enum TriggerType { Player, Creature };
-    public enum BehaviourTypes { OpenDoor, LowerLadder, ActivateObject, DeactivateObject }
+    public enum BehaviourTypes { OpenDoor, LowerLadder, ActivateObject, DeactivateObject,ActivatePad }
 
     #region Public Variables
     [Header ("Behaviour")]
@@ -123,6 +123,9 @@ public class PuzzleButton : MonoBehaviour {
                 break;
             case BehaviourTypes.LowerLadder:
                 interactObject.gameObject.GetComponent<Ladder>().Activate();
+                break;
+            case BehaviourTypes.ActivatePad:
+                interactObject.gameObject.GetComponent<PullPush>().Activate();
                 break;
         }
 
