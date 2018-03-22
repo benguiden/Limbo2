@@ -22,6 +22,9 @@ public class SceneManager : MonoBehaviour {
 
     [Header ("Input")]
     public string restartInputString = "Restart";
+
+    [Header ("Visuals")]
+    public RoomTransition roomTransition;
     #endregion
 
     #region Private Variables
@@ -38,7 +41,9 @@ public class SceneManager : MonoBehaviour {
     }
 
     private void Start() {
+        roomTransition.enabled = false;
         LoadRoom ();
+        roomTransition.enabled = true;
     }
 
     private void Update() {
@@ -57,31 +62,38 @@ public class SceneManager : MonoBehaviour {
             Debug.Break ();
         } else {
             loadRoomCo = StartCoroutine (ILoadRoom ());
+            roomTransition.Transition ();
         }
     }
 
     public void LoadRoom(int newRoomIndex) {
-        roomIndex = newRoomIndex;
-        if (roomIndex >= rooms.Length) {
-            Debug.LogError ("Error: Room Index out of bounds.");
-            Debug.Break ();
-        } else {
-            LoadRoom ();
+        if (canLoad) {
+            roomIndex = newRoomIndex;
+            if (roomIndex >= rooms.Length) {
+                Debug.LogError ("Error: Room Index out of bounds.");
+                Debug.Break ();
+            } else {
+                LoadRoom ();
+            }
         }
     }
 
     public void LoadNextRoom() {
-        roomIndex++;
-        if (roomIndex >= rooms.Length) {
-            Debug.LogError ("Error: Room Index out of bounds.");
-            Debug.Break ();
-        } else {
-            LoadRoom ();
+        if (canLoad) {
+            roomIndex++;
+            if (roomIndex >= rooms.Length) {
+                Debug.LogError ("Error: Room Index out of bounds.");
+                Debug.Break ();
+            } else {
+                LoadRoom ();
+            }
         }
     }
 
     private IEnumerator ILoadRoom() {
         canLoad = false;
+
+        yield return null;
 
         //Unload current room
         if (loadedRoomParent.childCount > 0) {
