@@ -7,6 +7,7 @@ public class Ladder : MonoBehaviour {
 
     #region Public Variables
     public bool startsEnabled = true;
+    public bool canDeactivate = false;
     #endregion
 
     #region Private Variables
@@ -54,6 +55,15 @@ public class Ladder : MonoBehaviour {
     public void Activate() {
         startsEnabled = true;
         spriteRenderer.enabled = true;
+    }
+
+    public void Deactivate()
+    {
+        if(canDeactivate)
+        {
+            startsEnabled = false;
+            spriteRenderer.enabled = true;
+        }
     }
     #endregion
 

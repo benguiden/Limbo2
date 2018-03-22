@@ -233,10 +233,10 @@ public class PlayerController : MonoBehaviour {
 
     #region Visual Methods
     private void UpdateSpriteFlip() {
-        if (velocity.x < 0f)
-            playerSpriteRenderer.flipX = false;
-        else if (velocity.x > 0f)
+        if (Input.GetAxisRaw(horizontalInputString) >= 0.05f)
             playerSpriteRenderer.flipX = true;
+        else if (Input.GetAxisRaw(horizontalInputString) <= -0.05f)
+            playerSpriteRenderer.flipX = false;
     }
     #endregion
 
