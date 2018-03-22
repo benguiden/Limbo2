@@ -72,6 +72,7 @@ public class PlayerController : MonoBehaviour {
     //References
     private BoxCollider2D boxCollider;
     private AudioSource audioSource;
+    private Animator animator;
 
     //Debugging
     private float debugGroundBox = 0f;
@@ -102,6 +103,7 @@ public class PlayerController : MonoBehaviour {
         boxCollider = GetComponent<BoxCollider2D>();
         throwingController = GetComponent<ThrowController>();
         audioSource = GetComponent<AudioSource> ();
+        animator = GetComponentInChildren<Animator> ();
 
         //Calculations
         CalculateJump ();
@@ -123,6 +125,7 @@ public class PlayerController : MonoBehaviour {
 
         //Update Visuals
         UpdateSpriteFlip ();
+        SetUpAnimation ();
     }
 
     private void LateUpdate() {
@@ -242,6 +245,21 @@ public class PlayerController : MonoBehaviour {
             playerSpriteRenderer.flipX = true;
         else if (Input.GetAxisRaw(horizontalInputString) <= -0.05f)
             playerSpriteRenderer.flipX = false;
+    }
+
+    private void SetUpAnimation() {
+        if (velocity.y > 0.01f) {
+            animator.SetInteger ("State", 3);
+        } else if (velocity.y < (gravityDown * Time.deltaTime) - 2f) {
+            animator.SetInteger ("State", 4);
+        } else {
+            if (Mathf.Abs (velocity.x) > 0.01f) {
+                animator.SetInteger ("State", 1);
+                animator.SetFloat ("Speed", Mathf.Abs (horizontalTime));
+            } else {
+                animator.SetInteger ("State", 0);
+            }
+        }
     }
     #endregion
 
