@@ -51,6 +51,21 @@ public class PullPush : MonoBehaviour {
 
                 SceneManager.main.player.velocity += (Vector2)transform.right * currentForce;
             }
+            if (collision.gameObject.tag == "Creature")
+            {
+                float distance = Vector2.Distance(collision.transform.position, transform.position);
+                float currentForce = forceOverDistance.Evaluate(1f - (distance / (boxCollider.size.x / 2f)));
+
+                CreatureBehaviour creature = SceneManager.main.creature;
+                currentForce *= force;
+
+                if(creature.velocity.y <= 0f)
+                {
+                    currentForce *= 2f;
+                }
+
+                SceneManager.main.creature.velocity += (Vector3)transform.right * currentForce;
+            }
         }
     }
 

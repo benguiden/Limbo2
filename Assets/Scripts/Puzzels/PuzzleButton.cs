@@ -86,7 +86,11 @@ public class PuzzleButton : MonoBehaviour {
                 {
                     if (twinButton.isActivated)
                     {
-                        EnactSecondaryBehaviour(behaviourType);
+                        EnactBehaviour(behaviourType);
+                        if (secondaryType != BehaviourTypes.None)
+                        {
+                            EnactSecondaryBehaviour(secondaryType);
+                        }
                         isActivated = true;
                     }
                     else
