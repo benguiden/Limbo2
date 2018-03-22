@@ -210,7 +210,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  jumpHeight: 2
+  jumpHeight: 3
   riseTime: 0.4
   fallTime: 0.25
   climbingSpeed: 4
@@ -222,7 +222,7 @@ MonoBehaviour:
     m_Bits: 264
   playerSpriteRenderer: {fileID: 212696792730612444}
   velocity: {x: 0, y: 0}
-  isGrounded: 1
+  isGrounded: 0
   isClimbing: 0
   throwingController: {fileID: 0}
   movingPlatform: {fileID: 0}
