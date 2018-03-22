@@ -40,7 +40,7 @@ public class Door : MonoBehaviour {
                     //Load To Next Room
                     SceneManager.main.LoadNextRoom ();
                     if (nextRoomClip != null)
-                        AudioManager.main.Play (nextRoomClip);
+                        AudioManager.main.Play (nextRoomClip, 0.5f);
                 }
             }
         }
