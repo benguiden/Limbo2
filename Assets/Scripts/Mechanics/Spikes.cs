@@ -12,8 +12,10 @@ public class Spikes : MonoBehaviour {
         if ((enabled) && (SceneManager.main.canLoad)) {
             if (collision.gameObject.tag == "Player") {
                 SceneManager.main.LoadRoom ();
+                AudioManager.main.Play (AudioManager.main.deathClip);
             } else if (collision.gameObject.tag == "Creature") {
                 SceneManager.main.LoadRoom ();
+                AudioManager.main.Play (AudioManager.main.deathClip);
             }
         }
     }

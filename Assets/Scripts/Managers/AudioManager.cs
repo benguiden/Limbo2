@@ -7,6 +7,8 @@ public class AudioManager : MonoBehaviour {
 
     public static AudioManager main;
 
+    public AudioClip deathClip;
+
     #region Private Variables
     private AudioSource audioSource;
     #endregion

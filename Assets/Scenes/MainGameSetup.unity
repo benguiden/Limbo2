@@ -20043,6 +20043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 465c6a9784445de4683667369dc28f3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathClip: {fileID: 8300000, guid: a01f2e7fa87b69843ae9154cf252d011, type: 3}
 --- !u!1 &1100906723
 GameObject:
   m_ObjectHideFlags: 0
@@ -42226,7 +42227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 603123e0039fc1c4083ea265cf69a34f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomIndex: 5
+  roomIndex: 0
   rooms:
   - {fileID: 1171667515}
   - {fileID: 2112507814}

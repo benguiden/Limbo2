@@ -126,7 +126,16 @@ public class SceneManager : MonoBehaviour {
 
     private void ResetObjects() {
         player.transform.position = loadedRoomPuzzle.playerSpawn.position;
-        creature.transform.position = loadedRoomPuzzle.creatureSpawn.position;
+        creature.transform.position = loadedRoomPuzzle.playerSpawn.position + new Vector3 (0f, 0.85f, 0f);
+        creature.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+        creature.GetComponent<Rigidbody2D> ().isKinematic = true;
+        player.velocity = Vector2.zero;
+        player.throwingController.heldObjectType = ThrowController.HeldObjectType.Creature;
+        creature.transform.parent = player.transform;
+        creature.SetState (CreatureBehaviour.States.None);
+
+        player.throwingController.heldObjectType = ThrowController.HeldObjectType.Creature;
+
         Camera.main.orthographicSize = loadedRoomPuzzle.size.y / 2f;
     }
     #endregion
