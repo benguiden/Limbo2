@@ -22,6 +22,9 @@ public class ThrowController : MonoBehaviour {
 
     [Header("Lure")]
     public Object lurePrefab;
+
+    [Header ("Audio")]
+    public AudioClip throwClip;
     #endregion
 
     #region Hidden Variables
@@ -34,6 +37,7 @@ public class ThrowController : MonoBehaviour {
     //References
     private Rigidbody2D rb2d;
     private Transform creature;
+    private AudioSource audioSource;
 
     //Input
     private Vector2 aimInput = new Vector2 ();
@@ -54,6 +58,7 @@ public class ThrowController : MonoBehaviour {
         }
         rb2d = GetComponent<Rigidbody2D>();
         creature = GameObject.FindGameObjectWithTag("Creature").transform;
+        audioSource = GetComponent<AudioSource> ();
     }
 
     private void Update() {
@@ -113,6 +118,8 @@ public class ThrowController : MonoBehaviour {
     }
 
     private void Throw() {
+        audioSource.clip = throwClip;
+        audioSource.Play ();
         if (heldObjectType == HeldObjectType.Lure) {
             GameObject oldLure = GameObject.Find("Lure");
             if (oldLure != null)

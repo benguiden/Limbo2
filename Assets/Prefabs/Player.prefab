@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 114352659414302388}
   - component: {fileID: 50733282637758222}
   - component: {fileID: 61965637850185546}
+  - component: {fileID: 82943061426195166}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -148,6 +149,86 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 3.75}
   m_EdgeRadius: 0
+--- !u!82 &82943061426195166
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1883711648903534}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.77
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114352659414302388
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -171,6 +252,7 @@ MonoBehaviour:
   aimHorStringInput: AimHorizontal
   aimVerStringInput: AimVertical
   lurePrefab: {fileID: 1079130937065050, guid: ad4354fa4e460a344b4ddfcb38c4aa65, type: 2}
+  throwClip: {fileID: 8300000, guid: 1493b3f7aa8ea034599573da4f6d0866, type: 3}
   heldObjectType: 1
 --- !u!114 &114437370161445552
 MonoBehaviour:
@@ -221,6 +303,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 264
   playerSpriteRenderer: {fileID: 212696792730612444}
+  landClip: {fileID: 8300000, guid: 65871727905ad574d900f334e1fcabf2, type: 3}
   velocity: {x: 0, y: 0}
   isGrounded: 0
   isClimbing: 0

@@ -29,10 +29,14 @@ public class PuzzleButton : MonoBehaviour {
     //References
     private SpriteRenderer spriteRenderer;
     private Transform child;
+    private AudioSource audioSource;
+    private bool on = false;
     #endregion
 
     private void Awake() {
         spriteRenderer = GetComponent<SpriteRenderer> ();
+        audioSource = GetComponent<AudioSource> ();
+        audioSource.panStereo = Mathf.Clamp (transform.position.x / 15f, -1f, 1f);
         if (transform.childCount > 0) {
             child = transform.GetChild (0);
         } else {
@@ -110,12 +114,14 @@ public class PuzzleButton : MonoBehaviour {
             }
            
         }
-        OnStep();
+        if (!on)
+            OnStep ();
         
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        on = false;
         OnRelease();
         isActivated = false;
     }
@@ -185,8 +191,11 @@ public class PuzzleButton : MonoBehaviour {
 
     private void OnStep()
     {
+        on = true;
         spriteRenderer.sprite = activatedSprite;
         child.localPosition = new Vector3 (child.localPosition.x, childOffsetY.x, child.localPosition.z);
+        audioSource.clip = AudioManager.main.buttonOnClip;
+        audioSource.Play ();
     }
 
     private void OnRelease()
@@ -203,5 +212,7 @@ public class PuzzleButton : MonoBehaviour {
         {
             interactObject.gameObject.GetComponent<PullPush>().Deactivate();
         }
+        audioSource.clip = AudioManager.main.buttonOffClip;
+        audioSource.Play ();
     }
 }

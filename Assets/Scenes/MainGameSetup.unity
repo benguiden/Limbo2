@@ -20044,6 +20044,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathClip: {fileID: 8300000, guid: a01f2e7fa87b69843ae9154cf252d011, type: 3}
+  buttonOnClip: {fileID: 8300000, guid: 6edbacd7e33ba9e4fb860fe61b377cb6, type: 3}
+  buttonOffClip: {fileID: 8300000, guid: b4adc797e6ba50048ad22ad327358acd, type: 3}
 --- !u!1 &1100906723
 GameObject:
   m_ObjectHideFlags: 0
@@ -26274,6 +26276,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114437370161445552, guid: 3a8343c8e0c868e4c93e25b039d79a9d,
+        type: 2}
+      propertyPath: landClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6a06a10c46c3ef045a15391e8edaed04, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a8343c8e0c868e4c93e25b039d79a9d, type: 2}
   m_IsPrefabParent: 0
