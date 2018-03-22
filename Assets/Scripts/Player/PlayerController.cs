@@ -30,9 +30,6 @@ public class PlayerController : MonoBehaviour {
 
     [Header ("Visuals")]
     public SpriteRenderer playerSpriteRenderer;
-
-    [Header ("Audio")]
-    public AudioClip landClip;
     #endregion
 
     #region Hidden Variables
@@ -262,16 +259,5 @@ public class PlayerController : MonoBehaviour {
         }
     }
     #endregion
-
-    private void OnCollisionEnter2D(Collision2D collision) {
-        if (rb2d.velocity.magnitude > 0.1f) {
-            audioSource.time = 0f;
-            audioSource.pitch = 0.6f + (0.2f * rb2d.velocity.magnitude);
-            audioSource.volume = 0.2f * rb2d.velocity.magnitude;
-            audioSource.panStereo = Mathf.Clamp (transform.position.x / 15f, -1f, 1f);
-            audioSource.clip = landClip;
-            audioSource.Play ();
-        }
-    }
 
 }
