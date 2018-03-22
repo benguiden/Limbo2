@@ -37,6 +37,7 @@ public class RoomTransition : MonoBehaviour {
         Camera newCamera = ((GameObject)Instantiate (Camera.main.gameObject, transform)).GetComponent<Camera> ();
         newCamera.transform.localPosition = Vector3.zero;
         newCamera.targetTexture = transitionTexture;
+        newCamera.GetComponent<AudioListener> ().enabled = false;
 
         yield return null;
 

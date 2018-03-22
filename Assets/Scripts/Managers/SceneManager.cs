@@ -27,6 +27,12 @@ public class SceneManager : MonoBehaviour {
     public RoomTransition roomTransition;
     #endregion
 
+    #region Hidden Variables
+    //References
+    [HideInInspector]
+    public List<Lure> lures = new List<Lure> ();
+    #endregion
+
     #region Private Variables
     private Coroutine loadRoomCo;
 
@@ -103,6 +109,12 @@ public class SceneManager : MonoBehaviour {
         loadedRoomPuzzle = Instantiate (rooms[roomIndex].gameObject, loadedRoomParent).GetComponent<PuzzleRoom> ();
         loadedRoomPuzzle.transform.localPosition = Vector3.zero;
         loadedRoomPuzzle.gameObject.SetActive (true);
+
+        foreach(Lure lure in lures) {
+            if (lure != null)
+                Destroy (lure.gameObject);
+        }
+        lures = new List<Lure> ();
 
         yield return null;
 
