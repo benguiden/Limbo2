@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour {
 
     [Header ("Input")]
     public string horizontalInputString = "Horizontal"; //Left Joystick
+    public string verticalInputString = "Vertical"; //Left Joystick
     public string jumpInputString = "Jump"; //A on Xbox controller
 
     [Header ("Collisions")]
@@ -46,6 +47,8 @@ public class PlayerController : MonoBehaviour {
     [HideInInspector]
     public ThrowController throwingController;
     [HideInInspector]
+    public Pathfollower movingPlatform;
+    [HideInInspector]
     public Rigidbody2D rb2d;
     #endregion
 
@@ -68,7 +71,7 @@ public class PlayerController : MonoBehaviour {
 
     //Debugging
     private float debugGroundBox = 0f;
-    private List<Vector2> debugGroundedPoint = new List<Vector2> ();
+    private List<Vector2> debugGroundedPoint = new List<Vector2>();
     #endregion
 
     #region Mono Methods
@@ -92,8 +95,8 @@ public class PlayerController : MonoBehaviour {
     private void Awake() {
         //References
         rb2d = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D> ();
-        throwingController = GetComponent<ThrowController> ();
+        boxCollider = GetComponent<BoxCollider2D>();
+        throwingController = GetComponent<ThrowController>();
 
         //Calculations
         CalculateJump ();
@@ -126,12 +129,13 @@ public class PlayerController : MonoBehaviour {
         debugGroundedPoint = new List<Vector2> ();
         isGrounded = false;
         if (rb2d.velocity.y <= 0f)
-            CheckGrounded ();
+            CheckGrounded();
     }
     #endregion
 
     #region Movement Methods
     private void UpdateVelocity() {
+ 
         //Change Time base on input
         if (rb2d.velocity.x == 0f)
             horizontalTime = 0f;
@@ -181,8 +185,10 @@ public class PlayerController : MonoBehaviour {
     private void UpdateJumpMovement() {
         if ((jumpInput) && (isGrounded) && (!isClimbing)) {
             velocity.y = jumpVelocity;
-        } else if ((Input.GetAxisRaw(jumpInputString) > 0.5f) && (isClimbing)) {
+        } else if (((Input.GetAxisRaw(jumpInputString) > 0.5f) || (Input.GetAxisRaw(verticalInputString) > 0.5f)) && (isClimbing)) {
             velocity.y = climbingSpeed;
+        } else if ((Input.GetAxisRaw(verticalInputString) < -0.5f) && (isClimbing)) {
+            velocity.y = -climbingSpeed;
         }
     }
 
@@ -212,10 +218,14 @@ public class PlayerController : MonoBehaviour {
 
         RaycastHit2D[] boxHits = Physics2D.BoxCastAll (boxOrigin, new Vector2 (boxCollider.size.x, boxHeight), 0f, Vector2.down, boxHeight + (boxCollider.size.y / 2f), groundedLayer);
 
+        movingPlatform = null;
         foreach (RaycastHit2D boxHit in boxHits) {
             if (boxHit) {
                 debugGroundedPoint.Add (boxHit.point);
                 isGrounded = true;
+                if (boxHit.collider.gameObject.tag == "Moving") {
+                    movingPlatform = boxHit.collider.transform.parent.GetComponent<Pathfollower>();
+                }
             }
         }
     }
@@ -223,10 +233,10 @@ public class PlayerController : MonoBehaviour {
 
     #region Visual Methods
     private void UpdateSpriteFlip() {
-        if (velocity.x < 0f)
-            playerSpriteRenderer.flipX = false;
-        else if (velocity.x > 0f)
+        if (Input.GetAxisRaw(horizontalInputString) >= 0.05f)
             playerSpriteRenderer.flipX = true;
+        else if (Input.GetAxisRaw(horizontalInputString) <= -0.05f)
+            playerSpriteRenderer.flipX = false;
     }
     #endregion
 

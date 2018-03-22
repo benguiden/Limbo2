@@ -52,8 +52,8 @@ public class ThrowController : MonoBehaviour {
             Debug.LogError ("Error: Line renderer not declared in throw controller.");
             Debug.Break ();
         }
-        rb2d = GetComponent<Rigidbody2D> ();
-        creature = GameObject.FindGameObjectWithTag ("Creature").transform;
+        rb2d = GetComponent<Rigidbody2D>();
+        creature = GameObject.FindGameObjectWithTag("Creature").transform;
     }
 
     private void Update() {
@@ -61,10 +61,10 @@ public class ThrowController : MonoBehaviour {
         GetAimInput ();
         if ((aimInput.x != 0f) || (aimInput.y != 0f)) {
             lineRenderer.enabled = true;
-            SetLinePoints ();
+            SetLinePoints();
             
             if (throwInput) {
-                Throw ();
+                Throw();
             }
         } else {
             lineRenderer.enabled = false;
@@ -122,7 +122,7 @@ public class ThrowController : MonoBehaviour {
                 lureTrans.position = releasePosition.position;
 
             Rigidbody2D lureBody = lureTrans.GetComponent<Rigidbody2D> ();
-            lureBody.velocity = (GetThrowVelocity () * throwSpeed) + new Vector2 (rb2d.velocity.x, 0f);
+            lureBody.velocity = (GetThrowVelocity() * throwSpeed) + new Vector2(rb2d.velocity.x, 0f);
             lureBody.gravityScale = Mathf.Abs ((gravity * throwSpeed * throwSpeed) / Physics.gravity.y);
         } else {
             heldObjectType = HeldObjectType.Lure;
@@ -136,7 +136,7 @@ public class ThrowController : MonoBehaviour {
 
     private void UpdateThrowInput() {
         if (Input.GetAxisRaw (throwInputString) > 0f) {
-            if (throwInputLast)
+            if(throwInputLast)
                 throwInput = false;
             else
                 throwInput = true;
