@@ -14707,6 +14707,7 @@ GameObject:
   - component: {fileID: 794572208}
   - component: {fileID: 794572210}
   - component: {fileID: 794572209}
+  - component: {fileID: 794572211}
   m_Layer: 8
   m_Name: spr_Platform03 (1)
   m_TagString: Ground
@@ -14733,7 +14734,7 @@ PolygonCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 794572207}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -15216,6 +15217,31 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!61 &794572211
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 794572207}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.17140974}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 17.83, y: 1.89}
+    newSize: {x: 17.83, y: 1.89}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 17.83, y: 1.2307346}
+  m_EdgeRadius: 0
 --- !u!4 &795177454 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4011755986286950, guid: 515b369a88c41374f9a92996a6b2ec1d,
@@ -41664,7 +41690,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomIndex: 0
   rooms:
-  - {fileID: 491633024}
+  - {fileID: 1201837886}
   - {fileID: 2112507814}
   - {fileID: 1029093904}
   - {fileID: 1201837886}
