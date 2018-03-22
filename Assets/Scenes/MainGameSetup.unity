@@ -9870,6 +9870,7 @@ GameObject:
   - component: {fileID: 524244750}
   - component: {fileID: 524244752}
   - component: {fileID: 524244751}
+  - component: {fileID: 524244753}
   m_Layer: 8
   m_Name: jungle_platform_med (2)
   m_TagString: Ground
@@ -9896,7 +9897,7 @@ PolygonCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 524244749}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -10155,6 +10156,31 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!61 &524244753
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 524244749}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.26878262, y: -0.08639431}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10.19, y: 1.05}
+    newSize: {x: 10.19, y: 1.05}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 9.652433, y: 0.339648}
+  m_EdgeRadius: 0
 --- !u!1 &541838940
 GameObject:
   m_ObjectHideFlags: 0
@@ -12602,6 +12628,7 @@ GameObject:
   - component: {fileID: 628420218}
   - component: {fileID: 628420217}
   - component: {fileID: 628420216}
+  - component: {fileID: 628420219}
   m_Layer: 8
   m_Name: limbo2_Assets1forest (1)_11
   m_TagString: Ground
@@ -12615,7 +12642,7 @@ PolygonCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 628420215}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -13059,6 +13086,31 @@ Transform:
   m_Father: {fileID: 1044071327}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &628420219
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 628420215}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.112336636, y: 0.021348}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 17.79, y: 1.51}
+    newSize: {x: 17.79, y: 1.51}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 17.003658, y: 0.84946036}
+  m_EdgeRadius: 0
 --- !u!1 &643475287
 GameObject:
   m_ObjectHideFlags: 0
@@ -13151,6 +13203,7 @@ GameObject:
   - component: {fileID: 663413442}
   - component: {fileID: 663413444}
   - component: {fileID: 663413443}
+  - component: {fileID: 663413445}
   m_Layer: 8
   m_Name: spr_Platform03
   m_TagString: Ground
@@ -13177,7 +13230,7 @@ PolygonCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 663413441}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -13660,6 +13713,31 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!61 &663413445
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 663413441}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.103507996, y: 0.14787912}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 17.83, y: 1.89}
+    newSize: {x: 17.83, y: 1.89}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 16.972305, y: 0.7661152}
+  m_EdgeRadius: 0
 --- !u!1 &667909570
 GameObject:
   m_ObjectHideFlags: 0
@@ -14098,6 +14176,7 @@ GameObject:
   - component: {fileID: 775080132}
   - component: {fileID: 775080134}
   - component: {fileID: 775080133}
+  - component: {fileID: 775080135}
   m_Layer: 8
   m_Name: limbo2_Assets1forest (1)_11 (1)
   m_TagString: Ground
@@ -14124,7 +14203,7 @@ PolygonCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 775080131}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -14555,6 +14634,31 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!61 &775080135
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 775080131}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.12271768}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 17.79, y: 1.51}
+    newSize: {x: 17.79, y: 1.51}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 17.79, y: 1.2645646}
+  m_EdgeRadius: 0
 --- !u!1 &779028843
 GameObject:
   m_ObjectHideFlags: 0
@@ -26577,6 +26681,7 @@ GameObject:
   - component: {fileID: 1456401232}
   - component: {fileID: 1456401234}
   - component: {fileID: 1456401233}
+  - component: {fileID: 1456401235}
   m_Layer: 8
   m_Name: jungle_platform_med (2)
   m_TagString: Ground
@@ -26603,7 +26708,7 @@ PolygonCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1456401231}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -26862,6 +26967,31 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!61 &1456401235
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1456401231}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.24528408, y: -0.078490734}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10.19, y: 1.05}
+    newSize: {x: 10.19, y: 1.05}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 9.69943, y: 0.46131682}
+  m_EdgeRadius: 0
 --- !u!1 &1465877202
 GameObject:
   m_ObjectHideFlags: 0
@@ -27735,6 +27865,7 @@ GameObject:
   - component: {fileID: 1526568857}
   - component: {fileID: 1526568859}
   - component: {fileID: 1526568858}
+  - component: {fileID: 1526568860}
   m_Layer: 8
   m_Name: spr_Platform03 (1)
   m_TagString: Ground
@@ -27761,7 +27892,7 @@ PolygonCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1526568856}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -28244,6 +28375,31 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!61 &1526568860
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1526568856}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.03879547, y: 0.3261459}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 17.83, y: 1.89}
+    newSize: {x: 17.83, y: 1.89}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 16.892563, y: 0.79296494}
+  m_EdgeRadius: 0
 --- !u!1 &1535731358
 GameObject:
   m_ObjectHideFlags: 0
@@ -34022,6 +34178,7 @@ GameObject:
   - component: {fileID: 1723791535}
   - component: {fileID: 1723791534}
   - component: {fileID: 1723791533}
+  - component: {fileID: 1723791536}
   m_Layer: 8
   m_Name: jungle_platform_med
   m_TagString: Ground
@@ -34035,7 +34192,7 @@ PolygonCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1723791532}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -34313,6 +34470,31 @@ Transform:
   m_Father: {fileID: 1044071327}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!61 &1723791536
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1723791532}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.07028198, y: -0.07168555}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10.19, y: 1.05}
+    newSize: {x: 10.19, y: 1.05}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 9.643372, y: 0.4693303}
+  m_EdgeRadius: 0
 --- !u!1001 &1733906384
 Prefab:
   m_ObjectHideFlags: 0
@@ -35290,6 +35472,7 @@ GameObject:
   - component: {fileID: 1752692347}
   - component: {fileID: 1752692346}
   - component: {fileID: 1752692348}
+  - component: {fileID: 1752692349}
   m_Layer: 8
   m_Name: spr_Platform02 (1)
   m_TagString: Ground
@@ -35360,7 +35543,7 @@ PolygonCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1752692345}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -35590,6 +35773,31 @@ PolygonCollider2D:
       - {x: -4.43, y: 0.065}
       - {x: -4.45, y: 0.035}
       - {x: -4.44, y: 0.035}
+--- !u!61 &1752692349
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1752692345}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.10732269, y: 0.039023876}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10.22, y: 1.21}
+    newSize: {x: 10.22, y: 1.21}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 9.615128, y: 0.46855164}
+  m_EdgeRadius: 0
 --- !u!1001 &1757915819
 Prefab:
   m_ObjectHideFlags: 0
@@ -35661,6 +35869,7 @@ GameObject:
   - component: {fileID: 1764404680}
   - component: {fileID: 1764404682}
   - component: {fileID: 1764404681}
+  - component: {fileID: 1764404683}
   m_Layer: 8
   m_Name: jungle_platform_med (5)
   m_TagString: Ground
@@ -35687,7 +35896,7 @@ PolygonCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1764404679}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -35952,6 +36161,31 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!61 &1764404683
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1764404679}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.13270426, y: -0.04082507}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10.19, y: 1.05}
+    newSize: {x: 10.19, y: 1.05}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 9.598062, y: 0.56009567}
+  m_EdgeRadius: 0
 --- !u!1001 &1768490536
 Prefab:
   m_ObjectHideFlags: 0
@@ -41197,6 +41431,7 @@ GameObject:
   - component: {fileID: 1984163834}
   - component: {fileID: 1984163836}
   - component: {fileID: 1984163835}
+  - component: {fileID: 1984163837}
   m_Layer: 8
   m_Name: spr_Platform03 (2)
   m_TagString: Ground
@@ -41223,7 +41458,7 @@ PolygonCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1984163833}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -41712,6 +41947,31 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!61 &1984163837
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1984163833}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0287323, y: 0.2490679}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 17.83, y: 1.89}
+    newSize: {x: 17.83, y: 1.89}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 17.044495, y: 0.7404568}
+  m_EdgeRadius: 0
 --- !u!1001 &1985977728
 Prefab:
   m_ObjectHideFlags: 0
@@ -43428,6 +43688,7 @@ GameObject:
   - component: {fileID: 2094057378}
   - component: {fileID: 2094057377}
   - component: {fileID: 2094057376}
+  - component: {fileID: 2094057379}
   m_Layer: 8
   m_Name: jungle_platform_med (1)
   m_TagString: Ground
@@ -43441,7 +43702,7 @@ PolygonCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2094057375}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -43713,6 +43974,31 @@ Transform:
   m_Father: {fileID: 1044071327}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &2094057379
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2094057375}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.034174204, y: -0.034191787}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10.19, y: 1.05}
+    newSize: {x: 10.19, y: 1.05}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 9.74551, y: 0.3319773}
+  m_EdgeRadius: 0
 --- !u!1 &2112507812
 GameObject:
   m_ObjectHideFlags: 0
