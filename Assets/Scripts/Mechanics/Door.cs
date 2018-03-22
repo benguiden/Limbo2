@@ -11,6 +11,9 @@ public class Door : MonoBehaviour {
     [Header("Visuals")]
     public Sprite lockedSprite;
     public Sprite unlockedSprite;
+
+    [Header ("Audio")]
+    public AudioClip nextRoomClip;
     #endregion
 
     #region Private Variables
@@ -36,6 +39,8 @@ public class Door : MonoBehaviour {
                 if (SceneManager.main.player.throwingController.heldObjectType == ThrowController.HeldObjectType.Creature) {
                     //Load To Next Room
                     SceneManager.main.LoadNextRoom ();
+                    if (nextRoomClip != null)
+                        AudioManager.main.Play (nextRoomClip);
                 }
             }
         }

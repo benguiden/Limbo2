@@ -84,7 +84,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1252444138224644}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4202581508310830}
@@ -213,7 +213,9 @@ MonoBehaviour:
   jumpHeight: 2
   riseTime: 0.4
   fallTime: 0.25
+  climbingSpeed: 4
   horizontalInputString: Horizontal
+  verticalInputString: Vertical
   jumpInputString: Jump
   groundedLayer:
     serializedVersion: 2
@@ -221,7 +223,10 @@ MonoBehaviour:
   playerSpriteRenderer: {fileID: 212696792730612444}
   velocity: {x: 0, y: 0}
   isGrounded: 1
+  isClimbing: 0
   throwingController: {fileID: 0}
+  movingPlatform: {fileID: 0}
+  rb2d: {fileID: 0}
 --- !u!120 &120555266472482084
 LineRenderer:
   m_ObjectHideFlags: 1

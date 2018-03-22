@@ -93,6 +93,7 @@ MonoBehaviour:
   locked: 1
   lockedSprite: {fileID: 21300014, guid: f102ea47ce66331459e2a7e093a84572, type: 3}
   unlockedSprite: {fileID: 21300012, guid: f102ea47ce66331459e2a7e093a84572, type: 3}
+  nextRoomClip: {fileID: 8300000, guid: 57aa376d220876748a56f8f85a372133, type: 3}
 --- !u!212 &212309094243357214
 SpriteRenderer:
   m_ObjectHideFlags: 1
