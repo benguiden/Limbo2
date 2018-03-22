@@ -17288,7 +17288,7 @@ Prefab:
         type: 2}
       propertyPath: interactObject
       value: 
-      objectReference: {fileID: 1772022755}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 515b369a88c41374f9a92996a6b2ec1d, type: 2}
   m_IsPrefabParent: 0
@@ -21601,7 +21601,7 @@ Prefab:
         type: 2}
       propertyPath: interactObject
       value: 
-      objectReference: {fileID: 1772022755}
+      objectReference: {fileID: 0}
     - target: {fileID: 4011755986286950, guid: 515b369a88c41374f9a92996a6b2ec1d, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
@@ -36735,22 +36735,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4595522840688806, guid: f6ee803e5fd255a44a7a47ed3e905447,
     type: 2}
   m_PrefabInternal: {fileID: 1772022752}
---- !u!1 &1772022754 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1875478934129088, guid: f6ee803e5fd255a44a7a47ed3e905447,
-    type: 2}
-  m_PrefabInternal: {fileID: 1772022752}
---- !u!114 &1772022755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1772022754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe1efa3fcd0f76145a53c978cff42595, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1773904797 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4862877878913850, guid: 45227c10a7fff6848898e27fa29f63cf,
@@ -41690,7 +41674,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomIndex: 0
   rooms:
-  - {fileID: 1201837886}
+  - {fileID: 1171667515}
   - {fileID: 2112507814}
   - {fileID: 1029093904}
   - {fileID: 1201837886}
