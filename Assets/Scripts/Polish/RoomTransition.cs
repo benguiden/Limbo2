@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PostProcessing;
 
 public class RoomTransition : MonoBehaviour {
 
@@ -9,12 +10,13 @@ public class RoomTransition : MonoBehaviour {
     public float pauseTime = 0.2f;
     public float transitionTime = 0.3f;
     public MeshRenderer meshRenderer;
-
+    
     private Coroutine transitionCo;
+    private PostProcessingBehaviour post;
 
     private void Awake() {
         transitionTexture = new RenderTexture (blankTexture);
-        
+        post = GetComponent<PostProcessingBehaviour> ();
     }
 
     public void ResetSize() {
@@ -54,7 +56,10 @@ public class RoomTransition : MonoBehaviour {
         meshRenderer.material.SetTextureOffset ("_MainTex", Vector2.zero);
 
         yield return new WaitForSeconds (pauseTime);
-        
+
+        ChromaticAberrationModel.Settings chromeSettings = new ChromaticAberrationModel.Settings ();
+        MotionBlurModel.Settings blurSettings = new MotionBlurModel.Settings ();
+
         float time = 0f;
         while (time < transitionTime) {
             time += Time.deltaTime;
@@ -66,8 +71,21 @@ public class RoomTransition : MonoBehaviour {
 
             meshRenderer.material.SetTextureOffset ("_MainTex", new Vector2 (theta, 0f));
             meshRenderer.material.mainTextureScale = new Vector2 (1f - theta, 1f);
+
+            chromeSettings.intensity = Mathf.Sin (theta * Mathf.PI);
+            post.profile.chromaticAberration.settings = chromeSettings;
+
+            blurSettings.frameBlending = Mathf.Sin (theta * Mathf.PI);
+            post.profile.motionBlur.settings = blurSettings;
+
             yield return null;
         }
+        
+        chromeSettings.intensity = 0f;
+        post.profile.chromaticAberration.settings = chromeSettings;
+
+        blurSettings.frameBlending = 0f;
+        post.profile.motionBlur.settings = blurSettings;
 
         meshRenderer.gameObject.SetActive (false);
         Destroy (newCamera.gameObject);
