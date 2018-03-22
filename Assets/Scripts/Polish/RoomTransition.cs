@@ -15,7 +15,6 @@ public class RoomTransition : MonoBehaviour {
     private PostProcessingBehaviour post;
 
     private void Awake() {
-        transitionTexture = new RenderTexture (blankTexture);
         post = GetComponent<PostProcessingBehaviour> ();
     }
 

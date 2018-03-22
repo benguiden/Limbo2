@@ -292,7 +292,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  jumpHeight: 3
+  jumpHeight: 3.5
   riseTime: 0.4
   fallTime: 0.25
   climbingSpeed: 4
