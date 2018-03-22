@@ -133,6 +133,7 @@ public class PuzzleButton : MonoBehaviour {
 
     private void ActivateObject(Interactable objToActivate)
     {
+        Debug.Log("Activate");
         objToActivate.gameObject.SetActive(true);
     }
 
