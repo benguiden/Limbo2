@@ -6673,11 +6673,6 @@ Prefab:
       propertyPath: fleeTarget
       value: 
       objectReference: {fileID: 1369247936}
-    - target: {fileID: 50080130528965460, guid: 625e7be7807b61242bf1123d0759affa,
-        type: 2}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 625e7be7807b61242bf1123d0759affa, type: 2}
   m_IsPrefabParent: 0
@@ -26194,11 +26189,6 @@ Prefab:
     - target: {fileID: 4202581508310830, guid: 3a8343c8e0c868e4c93e25b039d79a9d, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 82943061426195166, guid: 3a8343c8e0c868e4c93e25b039d79a9d,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a8343c8e0c868e4c93e25b039d79a9d, type: 2}

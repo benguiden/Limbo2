@@ -32,12 +32,15 @@ public class CreatureBehaviour : MonoBehaviour
     bool isJumping;
 
     PlayerController player;
+    private SpriteRenderer spriteRenderer;
+    private Vector2 lastPosition = new Vector2 ();
 
     // Use this for initialization
     void Awake()
     {
         rigidbody = GetComponentInChildren<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerController> ();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer> ();
     }
 
     // Update is called once per frame
@@ -59,6 +62,22 @@ public class CreatureBehaviour : MonoBehaviour
                 rigidbody.isKinematic = true;
             }
         }
+
+        //Visuals
+        Vector2 movement = ((Vector2)transform.position - lastPosition).normalized;
+        if (((Vector2)transform.position - lastPosition).magnitude > 0.01f) {
+            if (movement.x >= 0f) {
+                float newAngle = Mathf.Atan2 (movement.y, movement.x) * Mathf.Rad2Deg;
+                spriteRenderer.transform.localEulerAngles = new Vector3 (0f, 0f, newAngle);
+                spriteRenderer.flipX = false;
+            } else {
+                float newAngle = (-Mathf.Atan2 (-movement.y, movement.x) * Mathf.Rad2Deg) + 180f;
+                spriteRenderer.transform.localEulerAngles = new Vector3 (0f, 0f, newAngle);
+                spriteRenderer.flipX = true;
+            }
+        }
+        lastPosition = transform.position;
+
     }
 
     public void SetState(States newState)
