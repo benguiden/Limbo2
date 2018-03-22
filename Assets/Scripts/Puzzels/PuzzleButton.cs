@@ -153,5 +153,10 @@ public class PuzzleButton : MonoBehaviour {
     {
         spriteRenderer.sprite = deactivatedSprite;
         child.localPosition = new Vector3 (child.localPosition.x, childOffsetY.y, child.localPosition.z);
+
+        if(behaviourType == BehaviourTypes.LowerLadder)
+        {
+            interactObject.gameObject.GetComponent<Ladder>().Deactivate();
+        }
     }
 }
