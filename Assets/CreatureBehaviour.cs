@@ -15,7 +15,7 @@ public class CreatureBehaviour : MonoBehaviour
     public float moveSpeed;
     public float maxSpeed;
 
-    Vector3 velocity;
+    public Vector3 velocity;
     Vector3 force;
 
     public GameObject fleeTarget;

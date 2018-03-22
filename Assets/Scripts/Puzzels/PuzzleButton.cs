@@ -5,16 +5,18 @@ using UnityEngine;
 public class PuzzleButton : MonoBehaviour {
 
     public enum TriggerType { Player, Creature };
-    public enum BehaviourTypes { OpenDoor, ActivateObject, DeactivateObject }
+    public enum BehaviourTypes { None,OpenDoor, LowerLadder, ActivateObject, DeactivateObject,ActivatePad }
 
     #region Public Variables
     [Header ("Behaviour")]
-    public BehaviourTypes behaviourType; 
+    public BehaviourTypes behaviourType;
+    public BehaviourTypes secondaryType;
     public TriggerType triggerType;
 
     public bool isActivated;
 
     public Interactable interactObject;
+    public Interactable secondaryObject;
     public PuzzleButton twinButton;
 
     [Header ("Visuals")]
@@ -63,6 +65,10 @@ public class PuzzleButton : MonoBehaviour {
                 {
                     Debug.Log("Yup");
                     EnactBehaviour(behaviourType);
+                    if(secondaryType != BehaviourTypes.None)
+                    {
+                        EnactSecondaryBehaviour(secondaryType);
+                    }
                     isActivated = true;
                 }
             }
@@ -81,6 +87,10 @@ public class PuzzleButton : MonoBehaviour {
                     if (twinButton.isActivated)
                     {
                         EnactBehaviour(behaviourType);
+                        if (secondaryType != BehaviourTypes.None)
+                        {
+                            EnactSecondaryBehaviour(secondaryType);
+                        }
                         isActivated = true;
                     }
                     else
@@ -91,6 +101,10 @@ public class PuzzleButton : MonoBehaviour {
                 else  // Otherwise, go ahead
                 {
                     EnactBehaviour(behaviourType);
+                    if (secondaryType != BehaviourTypes.None)
+                    {
+                        EnactSecondaryBehaviour(secondaryType);
+                    }
                     isActivated = true;
                 }
             }
@@ -121,12 +135,41 @@ public class PuzzleButton : MonoBehaviour {
             case BehaviourTypes.OpenDoor:
                 //OpenDoor(interactObject);
                 break;
+            case BehaviourTypes.LowerLadder:
+                interactObject.gameObject.GetComponent<Ladder>().Activate();
+                break;
+            case BehaviourTypes.ActivatePad:
+                interactObject.gameObject.GetComponent<PullPush>().Activate();
+                break;
+        }
+
+    }
+
+    private void EnactSecondaryBehaviour(BehaviourTypes behaviour)
+    {
+        Debug.Log("Starting secondary task");
+        secondaryObject.ButtonInteract();
+        switch (behaviour)
+        {
+            case BehaviourTypes.ActivateObject:
+                ActivateObject(secondaryObject);
+                break;
+            case BehaviourTypes.DeactivateObject:
+                DeActivateObject(secondaryObject);
+                break;
+            case BehaviourTypes.LowerLadder:
+                secondaryObject.gameObject.GetComponent<Ladder>().Activate();
+                break;
+            case BehaviourTypes.ActivatePad:
+                secondaryObject.gameObject.GetComponent<PullPush>().Activate();
+                break;
         }
 
     }
 
     private void ActivateObject(Interactable objToActivate)
     {
+        Debug.Log("Activate");
         objToActivate.gameObject.SetActive(true);
     }
 
@@ -150,5 +193,15 @@ public class PuzzleButton : MonoBehaviour {
     {
         spriteRenderer.sprite = deactivatedSprite;
         child.localPosition = new Vector3 (child.localPosition.x, childOffsetY.y, child.localPosition.z);
+
+        if(behaviourType == BehaviourTypes.LowerLadder)
+        {
+            interactObject.gameObject.GetComponent<Ladder>().Deactivate();
+        }
+
+        if (behaviourType == BehaviourTypes.ActivatePad)
+        {
+            interactObject.gameObject.GetComponent<PullPush>().Deactivate();
+        }
     }
 }

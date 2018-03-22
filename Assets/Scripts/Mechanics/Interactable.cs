@@ -51,6 +51,7 @@ public class Interactable : MonoBehaviour {
                     spikes.Deactivate ();
                     break;
                 case InteractableType.Ladder:
+                    Debug.Log("Lower Ladder");
                     ladder.Activate ();
                     break;
                 case InteractableType.PullPush:

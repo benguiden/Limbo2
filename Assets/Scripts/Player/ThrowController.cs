@@ -114,6 +114,11 @@ public class ThrowController : MonoBehaviour {
 
     private void Throw() {
         if (heldObjectType == HeldObjectType.Lure) {
+            GameObject oldLure = GameObject.Find("Lure");
+            if (oldLure != null)
+            {
+                Destroy(oldLure);
+            }
             Transform lureTrans = ((GameObject)Instantiate (lurePrefab)).transform;
             lureTrans.name = "Lure";
             if (releasePosition == null)

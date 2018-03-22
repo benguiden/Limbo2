@@ -15,6 +15,8 @@ public class PullPush : MonoBehaviour {
     private BoxCollider2D boxCollider;
     private SpriteRenderer spriteRenderer;
 
+    public bool canDeactivate;
+
     private void Awake() {
         boxCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer> ();
@@ -49,7 +51,38 @@ public class PullPush : MonoBehaviour {
 
                 SceneManager.main.player.velocity += (Vector2)transform.right * currentForce;
             }
+            if (collision.gameObject.tag == "Creature")
+            {
+                float distance = Vector2.Distance(collision.transform.position, transform.position);
+                float currentForce = forceOverDistance.Evaluate(1f - (distance / (boxCollider.size.x / 2f)));
+
+                CreatureBehaviour creature = SceneManager.main.creature;
+                currentForce *= force;
+
+                if(creature.velocity.y <= 0f)
+                {
+                    currentForce += 10f;
+                }
+
+                SceneManager.main.creature.velocity += (Vector3)transform.right * currentForce;
+            }
         }
+    }
+
+    public void Activate()
+    {
+        enabled = true;
+        //Activate particle effects
+    }
+
+    public void Deactivate()
+    {
+        if(canDeactivate)
+        {
+            enabled = false;
+        }
+       
+        //Deactivate particle effect
     }
 
 }
