@@ -14,6 +14,7 @@ public class Door : MonoBehaviour {
 
     [Header ("Audio")]
     public AudioClip nextRoomClip;
+    public AudioClip unlockClip;
     #endregion
 
     #region Private Variables
@@ -49,8 +50,12 @@ public class Door : MonoBehaviour {
 
     #region Public Methods
     public void Unlock() {
-        locked = false;
-        spriteRenderer.sprite = unlockedSprite;
+        if (locked) {
+            locked = false;
+            spriteRenderer.sprite = unlockedSprite;
+            if (unlockClip != null)
+                AudioManager.main.Play (unlockClip, 0.25f);
+        }
     }
     #endregion
 
