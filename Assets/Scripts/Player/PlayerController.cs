@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour {
 
     [Header ("Visuals")]
     public SpriteRenderer playerSpriteRenderer;
+    public Footsteps jumpSource;
     #endregion
 
     #region Hidden Variables
@@ -189,6 +190,7 @@ public class PlayerController : MonoBehaviour {
 
     private void UpdateJumpMovement() {
         if ((jumpInput) && (isGrounded) && (!isClimbing)) {
+            jumpSource.PlayJump ();
             velocity.y = jumpVelocity;
         } else if (((Input.GetAxisRaw(jumpInputString) > 0.5f) || (Input.GetAxisRaw(verticalInputString) > 0.5f)) && (isClimbing)) {
             velocity.y = climbingSpeed;
