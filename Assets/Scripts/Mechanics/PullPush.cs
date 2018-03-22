@@ -61,7 +61,7 @@ public class PullPush : MonoBehaviour {
 
                 if(creature.velocity.y <= 0f)
                 {
-                    currentForce *= 2f;
+                    currentForce += 10f;
                 }
 
                 SceneManager.main.creature.velocity += (Vector3)transform.right * currentForce;
