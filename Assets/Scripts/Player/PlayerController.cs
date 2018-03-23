@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour {
     public bool isGrounded = false;
     [HideInInspector]
     public bool isClimbing = false;
+    [HideInInspector]
+    public bool climbingLast = false;
 
     //References
     [HideInInspector]
@@ -120,6 +122,7 @@ public class PlayerController : MonoBehaviour {
             velocity.y += rb2d.velocity.y;
         UpdateJumpMovement ();
         UpdateGravity ();
+        JumpFromLadder();
 
         //Update Visuals
         UpdateSpriteFlip ();
@@ -140,6 +143,14 @@ public class PlayerController : MonoBehaviour {
     #endregion
 
     #region Movement Methods
+    private void JumpFromLadder() {
+        if ((!isClimbing) && (climbingLast) && (Input.GetAxisRaw(jumpInputString) > 0f)) {
+            jumpSource.PlayJump();
+            velocity.y = jumpVelocity;
+        }
+        climbingLast = isClimbing;
+    }
+
     private void UpdateVelocity() {
  
         //Change Time base on input
