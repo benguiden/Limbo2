@@ -409,7 +409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53a69a044cfb6514ca62ed1f0a257e8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalSpeed: 5
+  horizontalSpeed: 5.5
   accelerationTime: 0.5
   decelerationTime: 0.3
   horizontalCurve:
@@ -451,6 +451,7 @@ MonoBehaviour:
   velocity: {x: 0, y: 0}
   isGrounded: 0
   isClimbing: 0
+  climbingLast: 0
   throwingController: {fileID: 0}
   movingPlatform: {fileID: 0}
   rb2d: {fileID: 0}

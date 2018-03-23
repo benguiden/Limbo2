@@ -64,8 +64,7 @@ public class SceneManager : MonoBehaviour {
     #region Set up Methods
     public void LoadRoom() {
         if (loadRoomCo != null) {
-            Debug.LogError ("Error: 2 load room coroutines activated.");
-            Debug.Break ();
+            Application.Quit();
         } else {
             loadRoomCo = StartCoroutine (ILoadRoom ());
             roomTransition.Transition ();
@@ -76,8 +75,7 @@ public class SceneManager : MonoBehaviour {
         if (canLoad) {
             roomIndex = newRoomIndex;
             if (roomIndex >= rooms.Length) {
-                Debug.LogError ("Error: Room Index out of bounds.");
-                Debug.Break ();
+                Application.Quit();
             } else {
                 LoadRoom ();
             }
@@ -88,8 +86,7 @@ public class SceneManager : MonoBehaviour {
         if (canLoad) {
             roomIndex++;
             if (roomIndex >= rooms.Length) {
-                Debug.LogError ("Error: Room Index out of bounds.");
-                Debug.Break ();
+                Application.Quit();
             } else {
                 LoadRoom ();
             }
